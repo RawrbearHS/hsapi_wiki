@@ -1,0 +1,192 @@
+import {PropertyData} from '/src/components/PropertyData.tsx';
+
+
+# Common Project Properties
+
+The following properties are present in the root of a project's JSON.
+
+Default values may be different depending on if the project was initially created on
+an iPad, iPhone, or the web player.
+
+
+## Metadata
+
+### `baseObjectScale`
+
+<PropertyData type="number" defaultValue="1" playerVersion="<1.5.16" />
+
+*Unused in modern [player versions](/wiki/spec/version-history#player-versions).*
+
+Scales character SVGs by a factor of its value. Does not scale shapes or text.
+
+*In version `1.5.16`, the value is replaced with `0.5` for normal-sized shapes (ones that are accessible from the editor),
+and uses a value of `1` for other shapes.*<sup><i>[needs verification]</i></sup>
+
+```json
+"baseObjectScale": 1
+```
+
+
+### `edited_at`
+
+<PropertyData type="string" />
+
+Contains a timestamp with the last time the draft was edited.
+
+*For an online project's publish date, see [published_at](#) and [correct_published_at](#).*
+
+```json
+"edited_at": "2024-09-09T15:22:57Z"
+```
+
+
+### `fontSize`
+
+<PropertyData type="number" defaultValueiPad="80" defaultValueiPhone="72" />
+
+Scales the text size.
+
+If this value is too big, the text line height will exceed
+the maximum threshold the player can handle, cutting off the text in the middle.<sup><i>[needs elaboration]</i></sup>
+
+```json
+"fontSize": 80
+```
+
+
+### `playerUpgrades`
+
+<PropertyData type="array" defaultValue="{}" />
+
+Contains a history of [player version](/wiki/spec/version-history#player-versions) upgrades.
+Populates when the project's player is upgraded via the drafts menu.
+
+In the Hopscotch app, you can upgrade older projects' players by tapping the ellipsis (...),
+then selecting "Update to Latest Player".
+This updates the project's `playerVersion` property, and appends the old and new player versions to `playerUpgrades`.
+
+For example, this represents an upgrade from player version `2.0.0` to version `2.1.1`:
+
+```json
+playerUpgrades: {
+    "2.0.0": "2.1.1"
+}
+```
+
+
+### `playerVersion`
+
+<PropertyData type="string" />
+
+Contains the [web player version](/wiki/spec/version-history#player-versions). Uses semantic versioning.
+
+```json
+"playerVersion": "2.1.1"
+"playerVersion": "1.5.15"
+```
+
+
+### `requires_beta_editor`
+
+<PropertyData type="boolean" />
+
+Determines if the project is saved with the advanced editor. When set to `true`,
+projects require a Hopscotch subscription to edit.
+
+```json
+requires_beta_editor: true
+```
+
+
+### `stageSize`
+
+<PropertyData type="object" defaultValueMobile="screen resolution" defaultValueWebEditor="1366x1024" />
+
+Contains the dimensions of the project stage.
+
+```json
+"stageSize": {
+    "width": 1366,
+    "height": 1024
+}
+```
+
+
+### `uuid`
+
+<PropertyData type="string" />
+
+Project UUIDs are short identifiers for projects. They are assigned at the end of a project's URL, when it is published online.
+
+```
+https://c.gethopscotch.com/p/xjerz8lre
+        |    project slug ─┘  uuid ─┘
+        └─ community subdomain
+```
+
+- Project UUIDs are calculated when a project is published. This is by default, and can be changed manually.<sup><i>[needs verification]</i></sup>
+- UUIDs are calculated by taking the current unix timestamp in milliseconds, multiplied by `65536`, then converted to Base36.
+
+```json
+"uuid": "xjerz8lre"
+```
+
+
+### `version`
+
+<PropertyData type="number" />
+
+Represents the latest [Hopscotch app version](/wiki/spec/version-history#app-versions) which a project was saved in.
+Older versions of the Hopscotch app will not open projects with a later `version`.
+
+If `version <=24`, the app will use the old player instead of the web player.
+
+```json
+"version": 34
+```
+
+
+
+## Metadata (Remix)
+
+These properties only exist in remixed projects.
+
+### `original_user`
+
+<PropertyData type="object" />
+
+Contains a [user object](/wiki/spec/online-project-properties#user) describing the original creator of the remixed project.
+
+Used for displaying the remix badge in the drafts menu. Cannot be edited for a published draft.<sup><i>[needs verification]</i></sup>
+
+
+### `previous_project_uuid`
+
+<PropertyData type="string" />
+
+Contains the [UUID](#uuid) of the project most recently remixed.
+
+
+
+## Pointer Arrays
+
+The following properties are arrays of object references, available project-wide.
+
+<PropertyData type="array" />
+
+### [`abilities`](/wiki/spec/ability)
+
+### [`customObjects`](/wiki/spec/custom-object)
+
+### [`customRuleInstances`](/wiki/spec/custom-rule-instance)
+
+### [`eventParameters`](/wiki/spec/event-parameter)
+
+### [`rules`](/wiki/spec/rule)
+
+### [`scenes`](/wiki/spec/scene)
+
+### [`traits`](/wiki/spec/trait)
+
+### [`variables`](/wiki/spec/variable)
+

@@ -12,7 +12,7 @@ Projects are essentially containers inside of containers:
 
 ## Nuances
 
-[Custom rule instances](/wiki/02-spec/custom-rule-instance.md) have the same attributes as [objects](/wiki/02-spec/object.md).
+[Custom rule instances](/wiki/02-spec/custom-rule-instance.md) have the same properties as [objects](/wiki/02-spec/object.md).
 
 [Rules](/wiki/02-spec/rule.md) contain a pointer to an [ability](/wiki/02-spec/ability.md).
 
