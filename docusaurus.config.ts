@@ -15,8 +15,10 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'HSAPI', // Usually your GitHub org/user name.
+  organizationName: 'RawrbearHS', // Usually your GitHub org/user name.
   projectName: 'hsapi', // Usually your repo name.
+  deploymentBranch: 'gh-pages',
+  trailingSlash: false,
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -49,6 +51,7 @@ const config: Config = {
     ],
   ],
 
+  // Google Fonts
   headTags: [
     {
       tagName: 'link',
@@ -69,7 +72,7 @@ const config: Config = {
       tagName: 'link',
       attributes: {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap'
+        href: 'https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap'
       }
     },
   ],
@@ -105,7 +108,7 @@ const config: Config = {
           items: [
             {
               label: 'Wiki',
-              to: '/wiki/intro',
+              to: '/wiki/introduction',
             },
           ],
         },
