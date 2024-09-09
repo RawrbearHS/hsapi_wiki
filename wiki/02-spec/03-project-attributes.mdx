@@ -6,45 +6,22 @@ import {AttributeData} from '/src/components/AttributeData.tsx';
 The following attributes are present in the root of a project's JSON.
 
 
-## `baseObjectScale`
-
-<AttributeData type="number" defaultValue="1" playerVersion="<1.5.16" />
-
-*Unused in modern [player versions](/wiki/02-spec/player-version-history.md).*
-
-Scales character SVGs by a factor of its value. Does not scale shapes or text.
-
-*In version `1.5.16`, the value is replaced with `0.5` for normal-sized shapes (ones that are accessible from the editor),
-and uses a value of `1` for other shapes.*<sup><i>[needs verification]</i></sup>
+## Metadata
 
 
-## `customObjects`
-
-<AttributeData type="array" />
-
-Stores the project's [custom objects](/wiki/spec/custom-object).
-
-
-## `playerVersion`
+### `playerVersion`
 
 <AttributeData type="string" />
 
 Contains the [web player version](wiki/02-spec/player-version-history.md). Uses semantic versioning.
 
 ```json
-playerVersion: "2.1.1"
-playerVersion: "1.5.15"
+"playerVersion": "2.1.1"
+"playerVersion": "1.5.15"
 ```
 
 
-## `traits`
-
-<AttributeData type="array" />
-
-Stores the project's [traits](/wiki/spec/trait).
-
-
-## `uuid`
+### `uuid`
 
 <AttributeData type="string" />
 
@@ -62,3 +39,52 @@ https://c.gethopscotch.com/p/xjerz8lre
 ```json
 "uuid": "xjerz8lre"
 ```
+
+
+### `version`
+
+<AttributeData type="number" />
+
+Represents the latest version of Hopscotch which a project was saved in.
+
+```json
+"version": 34
+```
+
+
+## Pointer Arrays
+
+
+### `customObjects`
+
+<AttributeData type="array" />
+
+Stores the project's [custom objects](/wiki/spec/custom-object).
+
+
+### `traits`
+
+<AttributeData type="array" />
+
+Stores the project's [traits](/wiki/spec/trait).
+
+
+
+## Micsellaneous
+
+
+### `baseObjectScale`
+
+<AttributeData type="number" defaultValue="1" playerVersion="<1.5.16" />
+
+*Unused in modern [player versions](/wiki/02-spec/player-version-history.md).*
+
+Scales character SVGs by a factor of its value. Does not scale shapes or text.
+
+*In version `1.5.16`, the value is replaced with `0.5` for normal-sized shapes (ones that are accessible from the editor),
+and uses a value of `1` for other shapes.*<sup><i>[needs verification]</i></sup>
+
+```json
+"baseObjectScale": 1
+```
+
