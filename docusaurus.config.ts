@@ -111,8 +111,8 @@ const config: Config = {
               to: '/wiki/introduction',
             },
             {
-              label: '.hopscotch File Spec',
-              to: '/wiki/category/hopscotch-file-spec'
+              label: '.hopscotch Format',
+              to: '/wiki/category/hopscotch-format'
             },
           ],
         },
