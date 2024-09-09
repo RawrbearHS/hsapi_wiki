@@ -32,3 +32,15 @@
   /* --ifm-background-color: #1d141d !important; */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
+
+.table-vertical th {
+  background-color: var(--ifm-table-background);
+}
+
+.table-vertical td {
+  background-color: var(--ifm-table-stripe-background);
+}
+
+.table-vertical tr:nth-child(2n) {
+  background-color: inherit;
+}

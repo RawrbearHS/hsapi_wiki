@@ -1,0 +1,64 @@
+import {AttributeData} from '/src/components/AttributeData.tsx';
+
+
+# Project Attributes
+
+The following attributes are present in the root of a project's JSON.
+
+
+## `baseObjectScale`
+
+<AttributeData type="number" defaultValue="1" playerVersion="<1.5.16" />
+
+*Unused in modern player versions.*
+
+Scales character SVGs by a factor of its value. Does not scale shapes or text.
+
+*In version `1.5.16`, the value is replaced with `0.5` for normal-sized shapes (ones that are accessible from the editor),
+and uses a value of `1` for other shapes.*<sup><i>[needs verification]</i></sup>
+
+
+## `customObjects`
+
+<AttributeData type="array" />
+
+Stores the project's [custom objects](/wiki/spec/custom-object).
+
+
+## `playerVersion`
+
+<AttributeData type="string" />
+
+Contains the [web player version](#). Uses semantic versioning.
+
+```json
+playerVersion: "2.1.1"
+playerVersion: "1.5.15"
+```
+
+
+## `traits`
+
+<AttributeData type="array" />
+
+Stores the project's [traits](/wiki/spec/trait).
+
+
+## `uuid`
+
+<AttributeData type="string" />
+
+Project UUIDs are short identifiers for projects. They are assigned at the end of a project's URL, when it is published online.
+
+```
+https://c.gethopscotch.com/p/xjerz8lre
+        |    project slug ─┘  uuid ─┘
+        └─ community subdomain
+```
+
+- Project UUIDs are calculated when a project is published. This is by default, and can be changed manually.<sup><i>[needs verification]</i></sup>
+- UUIDs are calculated by taking the current unix timestamp in milliseconds, multiplied by `65536`, then converted to Base36.
+
+```json
+"uuid": "xjerz8lre"
+```
