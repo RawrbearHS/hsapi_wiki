@@ -1,0 +1,177 @@
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #b9b5b8;
+  font-family: Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection,
+pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection,
+code[class*="language-"] ::-moz-selection {
+  text-shadow: none;
+  background: #5d283c;
+}
+
+pre[class*="language-"]::selection,
+pre[class*="language-"] ::selection,
+code[class*="language-"]::selection,
+code[class*="language-"] ::selection {
+  text-shadow: none;
+  background: #5d283c;
+}
+
+@media print {
+  code[class*="language-"],
+  pre[class*="language-"] {
+    text-shadow: none;
+  }
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  color: white;
+  background: #322931;
+}
+
+:not(pre) > code[class*="language-"] {
+  padding: 0.1em;
+  border-radius: 0.3em;
+  white-space: normal;
+}
+
+
+.token.variable {
+  color: #B9B5B8;
+
+}
+
+.token.operator {
+  color: #B9B5B8;
+
+}
+
+.token.comment {
+  color: #797379;
+
+}
+
+.token.punctuation {
+  color: #797379;
+
+}
+
+.token.keyword {
+  color: #C85E7C;
+
+}
+
+.token.selector {
+  color: #C85E7C;
+
+}
+
+.token.changed {
+  color: #C85E7C;
+
+}
+
+.token.function {
+  color: #1290BF;
+
+}
+
+.token.builtin {
+  color: #1290BF;
+
+}
+
+.token.class-name {
+  color: #FDCC59;
+
+}
+
+.token.string {
+  color: #8FC13E;
+
+}
+
+.token.symbol {
+  color: #8FC13E;
+
+}
+
+.token.inserted {
+  color: #8FC13E;
+
+}
+
+.token.number {
+  color: #FD8B19;
+
+}
+
+.token.constant {
+  color: #FD8B19;
+
+}
+
+.token.hexcode {
+  color: #FD8B19;
+
+}
+
+.token.attr-name {
+  color: #FD8B19;
+
+}
+
+.token.tag {
+  color: #DD464C;
+
+}
+
+.token.deleted {
+  color: #DD464C;
+
+}
+
+.token.regex {
+  color: #7E602C;
+
+}
+
+.token.char {
+  color: #7E602C;
+
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}

@@ -1,0 +1,9 @@
+{
+  "label": "HSAPI",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "generated-index",
+    "title": "HSAPI Reference"
+  }
+}

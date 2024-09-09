@@ -1,0 +1,11 @@
+.features {
+  display: flex;
+  align-items: center;
+  padding: 6.7rem 0; /* TODO: add back SVGs and make this 2rem 0 */
+  width: 100%;
+}
+
+.featureSvg {
+  height: 200px;
+  width: 200px;
+}
