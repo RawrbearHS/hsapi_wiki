@@ -6,14 +6,14 @@ Hopscotch projects are JSON files. They are stored on the mobile app as `.hopsco
 
 Projects are essentially containers inside of containers:
 
-- [Scenes](/wiki/02-spec/scene.md) contain a list of [object](/wiki/02-spec/object.md) IDs (pointers).
-  - [Objects](/wiki/02-spec/object.md) contain a list of pointers to [rules](/wiki/02-spec/rule.md) and [custom rule instances](/wiki/02-spec/custom-rule-instance.md).
-    - [Custom rule instances](/wiki/02-spec/custom-rule-instance.md) are checked first by the web player. They contain an [ability](/wiki/02-spec/ability.md)'s pointer.
+- [Scenes](/wiki/spec/scene) contain a list of [object](/wiki/spec/object) IDs (pointers).
+  - [Objects](/wiki/spec/object) contain a list of pointers to [rules](/wiki/spec/rule) and [custom rule instances](/wiki/spec/custom-rule-instance).
+    - [Custom rule instances](/wiki/spec/custom-rule-instance) are checked first by the web player. They contain an [ability](/wiki/spec/ability)'s pointer.
 
 ## Nuances
 
-[Custom rule instances](/wiki/02-spec/custom-rule-instance.md) have the same properties as [objects](/wiki/02-spec/object.md).
+[Custom rule instances](/wiki/spec/custom-rule-instance) have the same properties as [objects](/wiki/spec/object).
 
-[Rules](/wiki/02-spec/rule.md) contain a pointer to an [ability](/wiki/02-spec/ability.md).
+[Rules](/wiki/spec/rule) contain a pointer to an [ability](/wiki/spec/ability).
 
-[Abilities](/wiki/02-spec/ability.md) contain blocks, which can themselves contain abilities.
+[Abilities](/wiki/spec/ability) contain blocks, which can themselves contain abilities.
