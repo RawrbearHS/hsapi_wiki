@@ -2,6 +2,7 @@
 
 - Create logo/asset kit for HSAPI.
 - Change Prism theme to use Hopscotch colors instead. [prism.css](../../src/css/prism.css)
+- Make this page unlisted and still accessible from the site
 
 # Overview
 
@@ -21,4 +22,5 @@ Document all valid player versions. Elaborate on the different features/changelo
 
 # Version History
 
-How do older v<=24 players work on the web player?
+- How do older v<=24 players work on the web player?
+- Fix ExternalLink margin error
