@@ -1,0 +1,73 @@
+# Version History
+
+import {ExternalLinkIcon} from "/src/components/ExternalLinkIcon.tsx";
+import Button from "/src/components/Button.tsx";
+
+
+export const PlayerVersion = ({children, version}) => (
+          <div>
+                    <h3>{version}</h3>
+                    <Button
+                              label={version + " Web Player Source"}
+                              variant="secondary" outline
+                              link={"https://hs-tools-api.up.railway.app/webplayer/" + version}
+                              external="true" />
+          </div>
+);
+
+## Player Versions
+
+### 2.X
+
+Player versions `>=2.0` are currently shipped in production.
+
+Project datatypes are shared between all web player versions.
+
+:::info
+
+Parameters added later on, such as project ID and trail cap have not
+been added to the webplayer yet.
+
+:::
+
+{/* <Link
+          className="button button--primary button--lg"
+          to="https://jsonhero.io/new?url=https://hs-tools-api.up.railway.app/webplayer/2.0/project-datatypes/">
+          <span><ExternalLinkIcon /> Project Datatypes</span>
+</Link> */}
+
+
+<Button label="Project Datatypes" variant="secondary" outline link="#" external="true" />
+<Button label="Project Datatypes" variant="secondary" outline link="#" external="false" />
+
+<PlayerVersion version="2.0.9" / >
+
+<PlayerVersion version="2.1.7" / >
+
+<PlayerVersion version="2.2.3" / >
+
+
+### 1.X (Legacy)
+
+Coming soon!
+
+
+## App Versions
+
+The following app versions correspond to the `version` key in projects:
+
+### &lt;&equals;24
+
+Older versions use the old non-web player.
+
+### 26
+
+Adds object variables.
+
+### 28
+
+Adds custom `when` rules.
+
+### 34
+
+Current version (as of August 2022).
