@@ -9,9 +9,10 @@ export const PlayerVersion = ({children, version}) => (
                     <h3>{version}</h3>
                     <Button
                               label={version + " Web Player Source"}
-                              variant="secondary" outline
+                              variant="secondary"
                               link={"https://hs-tools-api.up.railway.app/webplayer/" + version}
-                              external />
+                              outline external
+                    />
           </div>
 );
 
@@ -31,13 +32,18 @@ been added to the webplayer yet.
 :::
 
 
-<Button label="Project Datatypes" variant="secondary" outline link="#" external />
+<Button
+          label="Project Datatypes"
+          variant="secondary"
+          link="https://jsonhero.io/new?url=https://hs-tools-api.up.railway.app/webplayer/2.0/project-datatypes"
+          outline external
+/>
 
-<PlayerVersion version="2.0.9" / >
+<PlayerVersion version="2.0.9" />
 
-<PlayerVersion version="2.1.7" / >
+<PlayerVersion version="2.1.7" />
 
-<PlayerVersion version="2.2.3" / >
+<PlayerVersion version="2.2.3" />
 
 
 ### 1.X (Legacy)
