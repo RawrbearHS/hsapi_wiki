@@ -1,4 +1,5 @@
 import {PropertyData} from '/src/components/PropertyData.tsx';
+import Note from '/src/components/Note.tsx';
 
 
 # Common Project Properties
@@ -20,7 +21,7 @@ an iPad, iPhone, or the web player.
 Scales character SVGs by a factor of its value. Does not scale shapes or text.
 
 *In version `1.5.16`, the value is replaced with `0.5` for normal-sized shapes (ones that are accessible from the editor),
-and uses a value of `1` for other shapes.*<sup><i>[needs verification]</i></sup>
+and uses a value of `1` for other shapes.*<Note note="needs verification" />
 
 ```json
 "baseObjectScale": 1
@@ -47,7 +48,7 @@ Contains a timestamp with the last time the draft was edited.
 Scales the text size.
 
 If this value is too big, the text line height will exceed
-the maximum threshold the player can handle, cutting off the text in the middle.<sup><i>[needs elaboration]</i></sup>
+the maximum threshold the player can handle, cutting off the text in the middle.<Note note="needs elaboration" />
 
 ```json
 "fontSize": 80
@@ -124,7 +125,7 @@ https://c.gethopscotch.com/p/xjerz8lre
         └─ community subdomain
 ```
 
-- Project UUIDs are calculated when a project is published. This is by default, and can be changed manually.<sup><i>[needs verification]</i></sup>
+- Project UUIDs are calculated when a project is published. This is by default, and can be changed manually.<Note note="needs verification" />
 - UUIDs are calculated by taking the current unix timestamp in milliseconds, multiplied by `65536`, then converted to Base36.
 
 ```json
@@ -157,7 +158,7 @@ These properties only exist in remixed projects.
 
 Contains a [user object](/wiki/spec/online-project-properties#user) describing the original creator of the remixed project.
 
-Used for displaying the remix badge in the drafts menu. Cannot be edited for a published draft.<sup><i>[needs verification]</i></sup>
+Used for displaying the remix badge in the drafts menu. Cannot be edited for a published draft.<Note note="needs verification" />
 
 
 ### `previous_project_uuid`

@@ -1,15 +1,29 @@
 import {PropertyData} from '/src/components/PropertyData.tsx';
-
+import Undocumented from '/src/components/Undocumented.tsx';
 
 # Ability
 
-Abilities are similar to functions. They contain objects that contain blocks.
+Abilities are reusable groups of blocks.
+
+## Properties
+
+### `abilityID`
+
+<Undocumented />
+
+### `createdAt`
+
+<Undocumented />
+
+### `name`
+
+<Undocumented />
 
 
 ## Pointer Arrays
 
-The following properties are arrays of object references, available project-wide.
+### [`blocks`](/wiki/spec/block)
 
 <PropertyData type="array" />
 
-### [`abilities`](/wiki/spec/ability)
+Contains object references to the blocks within the ability.
