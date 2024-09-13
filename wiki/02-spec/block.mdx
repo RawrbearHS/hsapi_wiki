@@ -1,24 +1,66 @@
+import {PropertyData} from '/src/components/PropertyData.tsx';
+import Button from '/src/components/Button.tsx';
 import Undocumented from '/src/components/Undocumented.tsx';
+import Note from '/src/components/Note.tsx';
 
 
 # Block
 
-<Undocumented message="Coming soon!" />
+Blocks are objects listed inside of [abilities](/wiki/spec/ability).
+They are also included in the [parameter](/wiki/spec/parameter)'s [`datum`](/wiki/spec/parameter#datum)
+property, with some differences.
 
 
-## Properties
+## Common Properties
 
 ### `block_class`
-<Undocumented />
+
+<PropertyData type="string" />
+
+*Unused.* Represents the block's class type. Possible values include:<Note note="needs elaboration" />
+
+- `"method"`: for loopless blocks, such as Move Forward, Set Variable, Comment, etc.
+- `"conditionalControl"`: for Check Once and Check If Else loops.
+- `"control"`: for Draw a Trail and other loop blocks.<Note note="needs verification" />
+- `"conditionalOperator"`: for conditional operators, including `=`, `≠`, `<` and `>`.
+- `"operator"`: for math and string operators, such as `+`, `-`, `×`, `÷`, Random, and HSB.
+
+```json
+"block_class": "conditionalControl"
+```
+
 
 ### `type`
-<Undocumented />
+
+<PropertyData type="number" />
+
+An ID that corresponds to the block's type.
+
+See below for a full list of possible values.
+
+<Button
+          label="Project Datatypes"
+          variant="secondary"
+          link="https://jsonhero.io/new?url=https://hs-tools-api.up.railway.app/webplayer/2.0/project-datatypes"
+          outline external
+/>
+
+```json
+"type": 41
+```
+
 
 ### `parameters` / `params`
 <Undocumented />
 
 ### `description`
 <Undocumented />
+
+
+## Ability Blocks
+
+
+## Datum Blocks
 
 
 ## Loops

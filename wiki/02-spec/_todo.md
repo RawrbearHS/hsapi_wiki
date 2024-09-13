@@ -20,6 +20,11 @@ Elaborate - is there a way to override the default behavior?
 `playerVersion`
 Document all valid player versions. Elaborate on the different features/changelog of each player version.
 
+# Block
+
+`block_class`
+Are there any specific examples that are missing here?
+
 # Version History
 
 - How do older v<=24 players work on the web player?
