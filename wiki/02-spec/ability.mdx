@@ -3,22 +3,50 @@ import Undocumented from '/src/components/Undocumented.tsx';
 
 # Ability
 
-Abilities are reusable groups of blocks.
+Abilities are broadly classified as any group of [blocks](/wiki/spec/block), which are
+referenced by [rules](/wiki/spec/rule) and [loop blocks](/wiki/spec/block#loops).
 
-## Properties
+
+## Metadata
 
 ### `abilityID`
 
-<Undocumented />
+<PropertyData type="string" />
+
+An ability's unique identifier, to be referenced elsewhere.
+
+```json
+"abilityID": "561D32F8-FD6B-45E0-9DFF-3191085E2351-3248-00005BE3B1E67098"
+```
+
 
 ### `createdAt`
 
-<Undocumented />
+<PropertyData type="number" />
+
+The ability's time of creation. Used to order custom blocks in the app's block picker.
+
+The decimal represents the number of seconds since January 1, 2001 at 00:00 UTC.
+
+```json
+"createdAt": 528311636.47971
+```
+
+
+## Metadata (Custom Block)
 
 ### `name`
 
-<Undocumented />
+<PropertyData type="string" />
 
+The name of a custom block.
+
+If this value is empty, the custom block will not appear in the app's block picker, and vice versa.
+Having an identical name as other custom blocks works fine.
+
+```json
+"name": "Do a Cool Trick"
+```
 
 ## Pointer Arrays
 
@@ -26,4 +54,4 @@ Abilities are reusable groups of blocks.
 
 <PropertyData type="array" />
 
-Contains object references to the blocks within the ability.
+Contains object references to the [blocks](/wiki/spec/block) within the ability.
