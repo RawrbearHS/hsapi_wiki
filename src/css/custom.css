@@ -48,7 +48,7 @@
 
   .DocSearch-Logo > a > svg {
     /* Very similar color as var(--hsapi-docsearch-gray) */
-    filter: brightness(0) saturate(100%) invert(53%) sepia(11%) saturate(0%) hue-rotate(219deg) brightness(85%) contrast(91%);
+    filter: brightness(0) saturate(100%) invert(53%) sepia(11%) saturate(0%) hue-rotate(219deg) brightness(85%) contrast(91%) !important;
   }
 }
 
