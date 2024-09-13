@@ -125,8 +125,9 @@ https://c.gethopscotch.com/p/xjerz8lre
         └─ community subdomain
 ```
 
-- Project UUIDs are calculated when a project is published. This is by default, and can be changed manually.<Note note="needs verification" />
-- UUIDs are calculated by taking the current unix timestamp in milliseconds, multiplied by `65536`, then converted to Base36.
+- Project UUIDs are calculated by Hopscotch's servers when a project is uploaded.
+- UUIDs are calculated by taking the current unix timestamp in seconds, multiplied by `65536`, then converted to Base36.
+- Some significantly older uuids used a different format, but anything newer than around late 2014<Note note="when precisely?" /> will usually follow this format.
 
 ```json
 "uuid": "xjerz8lre"
