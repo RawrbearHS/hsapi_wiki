@@ -1,5 +1,6 @@
 import Undocumented from '/src/components/Undocumented.tsx';
 import {PropertyData} from '/src/components/PropertyData.tsx';
+import Note from '/src/components/Note.tsx';
 
 
 # Online Project Properties
@@ -13,3 +14,47 @@ import {PropertyData} from '/src/components/PropertyData.tsx';
 
 <PropertyData type="object" />
 
+
+
+### `uuid`
+
+<PropertyData type="string" />
+
+Project UUIDs are short identifiers for projects. They are assigned at the end of a project's URL, when it is published online.
+
+```
+https://c.gethopscotch.com/p/xjerz8lre
+        |    project slug ─┘  uuid ─┘
+        └─ community subdomain
+```
+
+- Project UUIDs are calculated by Hopscotch's servers when a project is uploaded.
+- UUIDs are calculated by taking the current unix timestamp in seconds, multiplied by `65536`, then converted to Base36.
+- Significantly older projects use a different UUID format. Projects newer than around late 2014<Note note="needs research" /> will usually follow the current format.
+
+```json
+"uuid": "xjerz8lre"
+```
+
+
+## Metadata (Remix)
+
+These properties only exist in remixed projects.
+
+Editing these properties will update the remixed draft locally, displaying the edited remix badge in the Hopscotch app's draft menu.
+However, upon publishing the remix online, these properties are overwritten by Hopscotch's server.
+
+### `original_user`
+
+<PropertyData type="object" />
+
+Contains a [user object](/wiki/spec/online-project-properties#user) describing the original creator of the remixed project.
+
+Used for displaying the remix badge in the drafts menu.
+
+
+### `previous_project_uuid`
+
+<PropertyData type="string" />
+
+Contains the [UUID](#uuid) of the project that was remixed to create this one.

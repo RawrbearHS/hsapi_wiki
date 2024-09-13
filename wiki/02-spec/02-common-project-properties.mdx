@@ -20,8 +20,8 @@ an iPad, iPhone, or the web player.
 
 Scales character SVGs by a factor of its value. Does not scale shapes or text.
 
-*In version `1.5.16`, the value is replaced with `0.5` for normal-sized shapes (ones that are accessible from the editor),
-and uses a value of `1` for other shapes.*<Note note="needs verification" />
+*In any versioned webplayer `<=1.?`<Note note="needs research" />, the value is replaced with `0.5` for normal-sized shapes
+(ones that are accessible from the editor), and uses a value of `1` for other shapes.*
 
 ```json
 "baseObjectScale": 1
@@ -57,7 +57,7 @@ the maximum threshold the player can handle, cutting off the text in the middle.
 
 ### `playerUpgrades`
 
-<PropertyData type="array" defaultValue="{}" />
+<PropertyData type="object" defaultValue="{}" />
 
 Contains a history of [player version](/wiki/spec/version-history#player-versions) upgrades.
 Populates when the project's player is upgraded via the drafts menu.
@@ -113,25 +113,6 @@ Contains the dimensions of the project stage.
 ```
 
 
-### `uuid`
-
-<PropertyData type="string" />
-
-Project UUIDs are short identifiers for projects. They are assigned at the end of a project's URL, when it is published online.
-
-```
-https://c.gethopscotch.com/p/xjerz8lre
-        |    project slug ─┘  uuid ─┘
-        └─ community subdomain
-```
-
-- Project UUIDs are calculated when a project is published. This is by default, and can be changed manually.<Note note="needs verification" />
-- UUIDs are calculated by taking the current unix timestamp in milliseconds, multiplied by `65536`, then converted to Base36.
-
-```json
-"uuid": "xjerz8lre"
-```
-
 
 ### `version`
 
@@ -148,36 +129,21 @@ If `version <=24`, the app will use the old player instead of the web player.
 
 
 
-## Metadata (Remix)
-
-These properties only exist in remixed projects.
-
-### `original_user`
-
-<PropertyData type="object" />
-
-Contains a [user object](/wiki/spec/online-project-properties#user) describing the original creator of the remixed project.
-
-Used for displaying the remix badge in the drafts menu. Cannot be edited for a published draft.<Note note="needs verification" />
-
-
-### `previous_project_uuid`
-
-<PropertyData type="string" />
-
-Contains the [UUID](#uuid) of the project most recently remixed.
-
-
-
-## Pointer Arrays
-
-The following properties are arrays of object references, available project-wide.
+## ID Arrays
 
 <PropertyData type="array" />
+
+The following properties are arrays of objects, which are referenced project-wide
+using unique identifiers.
+
+Each property is its own array, catalogued with its object type:
+
 
 ### [`abilities`](/wiki/spec/ability)
 
 ### [`customObjects`](/wiki/spec/custom-object)
+
+### [`customRules`](/wiki/spec/custom-rule)
 
 ### [`customRuleInstances`](/wiki/spec/custom-rule-instance)
 
@@ -186,6 +152,8 @@ The following properties are arrays of object references, available project-wide
 ### [`rules`](/wiki/spec/rule)
 
 ### [`scenes`](/wiki/spec/scene)
+
+### [`sceneReferences`](/wiki/spec/scene-reference)
 
 ### [`traits`](/wiki/spec/trait)
 
