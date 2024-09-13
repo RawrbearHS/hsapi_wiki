@@ -113,26 +113,6 @@ Contains the dimensions of the project stage.
 ```
 
 
-### `uuid`
-
-<PropertyData type="string" />
-
-Project UUIDs are short identifiers for projects. They are assigned at the end of a project's URL, when it is published online.
-
-```
-https://c.gethopscotch.com/p/xjerz8lre
-        |    project slug ─┘  uuid ─┘
-        └─ community subdomain
-```
-
-- Project UUIDs are calculated by Hopscotch's servers when a project is uploaded.
-- UUIDs are calculated by taking the current unix timestamp in seconds, multiplied by `65536`, then converted to Base36.
-- Some significantly older uuids used a different format, but anything newer than around late 2014<Note note="when precisely?" /> will usually follow this format.
-
-```json
-"uuid": "xjerz8lre"
-```
-
 
 ### `version`
 
@@ -146,27 +126,6 @@ If `version <=24`, the app will use the old player instead of the web player.
 ```json
 "version": 34
 ```
-
-
-
-## Metadata (Remix)
-
-These properties only exist in remixed projects.
-
-### `original_user`
-
-<PropertyData type="object" />
-
-Contains a [user object](/wiki/spec/online-project-properties#user) describing the original creator of the remixed project.
-
-Used for displaying the remix badge in the drafts menu. Hopscotch's servers provide their own value of this when downloading projects, so any edits will only be shown in your drafts screen.
-
-
-### `previous_project_uuid`
-
-<PropertyData type="string" />
-
-Contains the [UUID](#uuid) of the project that was remixed to create this one. Hopscotch's servers provide their own value of this when downloading projects, so any edits will only be shown in your drafts screen.
 
 
 
