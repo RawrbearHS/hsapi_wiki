@@ -8,10 +8,11 @@ Hopscotch projects are JSON files. They are stored on the mobile app as `.hopsco
 
 Projects are essentially containers inside of containers:
 
-- [Scenes](/wiki/spec/scene) contain a list of [object](/wiki/spec/object) IDs (pointers).
-  - [Objects](/wiki/spec/object) contain a list of pointers to [rules](/wiki/spec/rule) and [custom rule instances](/wiki/spec/custom-rule-instance).
-   - [Custom rule instances](/wiki/spec/custom-rule-instance) are checked first by the web player<Note note="needs verification" />, and contain a reference to a [Custom rule](/wiki/spec/custom-rule), as well as the [values of arguments](/wiki/spec/parameter) to that custom rule.
-   - [Rules](/wiki/spec/rule) contain a pointer to an [ability](/wiki/spec/ability).
+- [Scenes](/wiki/spec/scene) contain a list of unique [object](/wiki/spec/object) identifiers (IDs).
+  - [Objects](/wiki/spec/object) contain a list of IDs to [rules](/wiki/spec/rule) and [custom rule instances](/wiki/spec/custom-rule-instance).
+   - [Custom rule instances](/wiki/spec/custom-rule-instance) are checked first by the web player<Note note="needs verification" />,
+     containing a reference to a [custom rule](/wiki/spec/custom-rule), as well as the [parameters](/wiki/spec/parameter) for that custom rule.
+   - [Rules](/wiki/spec/rule) contain an ID to an [ability](/wiki/spec/ability).
    - [Abilities](/wiki/spec/ability) contain blocks, which can themselves contain abilities or [parameters](/wiki/spec/parameter).
 
 ## Nuances
