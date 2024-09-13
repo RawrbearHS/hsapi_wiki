@@ -80,6 +80,19 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     // image: 'img/docusaurus-social-card.jpg',
+    algolia: {
+      // The application ID provided by Algolia
+      appId: 'MNDAY6UZHW',
+      // Public API key: it is safe to commit it
+      apiKey: '26a11f3962fd2e6b3e5b0d2f25c7985c',
+      indexName: 'hsapi',
+      // Optional: see doc section below
+      contextualSearch: true,
+      // Optional: path for search page that enabled by default (`false` to disable it)
+      searchPagePath: 'wiki/search',
+      // Optional: whether the insights feature is enabled or not on Docsearch (`false` by default)
+      insights: false,
+    },
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: false,

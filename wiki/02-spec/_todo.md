@@ -29,3 +29,7 @@ Are there any specific examples that are missing here?
 
 - How do older v<=24 players work on the web player?
 - Fix ExternalLink margin error
+
+# CSS
+
+- Figure out how to remove !important from all DocSearch properties.
