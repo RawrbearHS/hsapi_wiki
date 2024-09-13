@@ -1,3 +1,5 @@
+import Note from '/src/components/Note.tsx';
+
 # Overview
 
 Hopscotch projects are JSON files. They are stored on the mobile app as `.hopscotch` files.
@@ -8,7 +10,7 @@ Projects are essentially containers inside of containers:
 
 - [Scenes](/wiki/spec/scene) contain a list of [object](/wiki/spec/object) IDs (pointers).
   - [Objects](/wiki/spec/object) contain a list of pointers to [rules](/wiki/spec/rule) and [custom rule instances](/wiki/spec/custom-rule-instance).
-    - [Custom rule instances](/wiki/spec/custom-rule-instance) are checked first by the web player. They contain an [ability](/wiki/spec/ability)'s pointer.
+   - [Custom rule instances](/wiki/spec/custom-rule-instance) are checked first by the web player<Note note="needs verification" />, and contain a reference to a [Custom rule](/wiki/spec/custom-rule), as well as the [values of arguments](/wiki/spec/parameter) to that custom rule.
 
 ## Nuances
 
