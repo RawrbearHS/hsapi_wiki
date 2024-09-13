@@ -7,7 +7,7 @@ Creator of [Petrichorian Hopscript](https://github.com/petrichor-1/petrichorian-
 
 [Hopscotch forum profile](https://forum.gethopscotch.com/u/petrichor/summary) • [GitHub](https://github.com/petrichor-1)
 
-## @AwesomeE
+## @Awesome_E
 
 Offers leader support and great insights about the Hopscotch API!
 
