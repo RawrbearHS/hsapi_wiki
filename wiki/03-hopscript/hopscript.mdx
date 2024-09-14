@@ -1,0 +1,46 @@
+# Hopscript
+
+## The fundamental goals
+
+The most important goals of hopscript should be:
+
+- Represent _any_ hopscotch code in a textual form.
+- Be simple to understand coming exclusively from regular hopscotch
+- Easily and simply interface with existing hopscotch code, both ways
+
+## Secondary goals
+
+These are goals that are still very important, but not _quite_ as important as the ones above.
+
+- 1 to 1 dehopscotchification – dehopscotchify regular hopscotch code into hopscript that will
+  rehopscotchify into identical code, ignoring things like specific internal ids and such.
+- User defineable blocks – useful for modding
+- Reasonable response to name shadowing – if you have a local variable called `and` it should be
+  able to be unambiguously differentiated from the block called `and`, and the compiler should do that,
+  even if it isn't a particularly good variable name.
+- Easy extensibility – I ahve some ideas on how to do this later in this post.
+
+
+## Todo list to create hopscript
+
+Here is a list of what needs to happen to get to a finished version of hopscript. I have combined things that can be done simultaneously under a single number header
+
+#### Step 1
+
+- Create first version of hsapi, needed for hopscotchification
+- Implement parser
+- Implement parts of the extensions section that don't require hsapi
+
+#### Step 2
+
+- Create hopscotchificator
+
+#### Step 3
+
+- Make projects with hopscript and improve syntax
+- Create dehopscotchificator
+- Create extension interperator
+
+#### Step 4
+
+- Start using extensions more in base hopscript, ie remove hardcoded definitions of scopes

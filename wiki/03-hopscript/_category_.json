@@ -1,0 +1,9 @@
+{
+  "label": "Hopscript",
+  "collapsible": true,
+  "collapsed": true,
+  "link": {
+    "type": "doc",
+    "id": "hopscript"
+  }
+}

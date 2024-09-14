@@ -1,0 +1,86 @@
+# Extensions and Interop
+
+## Interoperability with regular hopscotch code
+
+You should be able to import hopscotch projects, or partial hopscotch projects (only includes certain top-level keys such as `abilities` or `objects`, but not all of them) just like regular hopscript files. We should at the very least support full hopscotch projects and ae's hspre and _mayeb_ hsprez formats, which are basically just partial hopscotch projects or zipped partial hopscotch projects. See the section on multi-file projects above for how this would behave to the user, and the section on name-dehopscotchification below for how names would work.
+
+## Extensions
+
+Extensions are not necessarily something that is essential to have fully finished for the very first version of hopscript, but allowing extending the language to add more features or to accomodate various modding purposes would be very helpful.
+
+## Basic type definitions
+
+This referes to not _really_ extensions of the language, rather just defining new types of blocks or objects. This _is_ essential for the first version of hopscript, because this is how blocks will be defined. The hopscotchifier/compiler itself won't know what any type of block actually is, that will all be defined in hopscript.
+
+I do not have any idea what the specific syntax for this would be, but what I have in my current implementation, but do not like, is something like this following:
+
+### Defining object types:
+
+`_defineObjectType <name> <id> <filename> <width> <height>`
+example:
+`_defineObjectType text 1 "text-object.png" 74 55`
+
+### Defining blocks:
+
+`_defineBlockType <block class> <name> <type> <json description> [parameters, if applicable]`
+the parameters take the format of:
+`<type> <label> <json key> <default value>, `
+For example, a method block:
+`_defineBlockType method set_position 41 "Set Position" 42 to_x "to x" "200", 42 y "y" "200", `
+an operator block that is an event:
+`_defineBlockType operator(Event) i_get_a_message 7023 "I Get a Message" 53 _ "I get a message" "", `
+Operators specify return type.
+A conditional operator:
+`_defineBlockType conditionalOperator(Boolean) less_than 1002 "＜" 57 _ "" "6", 57 _ "＜" "7", `
+^^ conditional operators are, from hopscript's point of view identical to an operator/expression. However, for hopscotchification they are different.
+
+### Assigning binary operators:
+
+`_defineBinaryOperator <operator> <block name>`
+^^ This exact format won't work directly in the hopscript described in this post, because it doesn't specify wheteher it is for the expression context or the method context.
+example:
+`_defineBinaryOperator - subtract`
+
+### Defining traits:
+
+`_defineTraitType <value type> <name> <type> <json description> [<scopes>]`
+example:
+`_defineTraitType Number rotation 2000 "Rotation" [Object, ]`
+
+### Defining parameter types:
+
+`_defineParameterType <type> <hopscript types>`
+Tells hopscript what type(s) each parameter type accepts. Useful for autocomplete suggestions, and for hopscotchification in some cases (primarily scenes)
+example:
+`_defineParameterType 42 String Number `
+
+### Setting requires_beta_editor
+
+`_setRequiresBetaEditor <boolean>`
+Sets the requires beta editor value in the project json. Needed exclusively for the advanced mode file to properly re-create how the app works.
+
+## Modifier extensions
+
+These are more substantial changes to the behavior of the language. They allow defining new scopes, modifying hopscotchified code, etc. Eventually, all scopes should be defined through extensions like this, but for the first version it might be okay to hardcode what `Game` or `Local` etc. hopscotchify to.
+
+These will take the form of hopscript files that instead of being made for the hopscotch player are made for a custom interperator. Instead of implicitly importing basic hopscotch blocks, they will implicitly import blocks that are meaningful to _our_ interperator. This code will run as the project is hopscotchified and be allowed to use blocks that call hsapi to modify the hopscotchified code. For example:
+
+```hopscript
+# It doesn't look like it, but `Scope` could be defined as an object type.
+Scope Game:
+	When i_am_used:
+		# Note the use of the `Rule` scope to refer to "arguments" to the rule. These could be implemented as traits, and are specific to our interperator
+		# In this example, the `i_am_used` rule is called whenever a scope called `Game` is used for a non-trait variable, and is expected to use the `return` block to return an hsapi object that can be used as an expression.
+		hsapi_create_variable(named: Rule.variable_name, type: HSBlockType.Game, store_into: result)
+		return(result)
+# `enum` could be another object type
+# I don't think enums should be included as a feature in our interperator, but it is an example of an extension, and extensions should also be able to be used in extensions, as long as it isn't recursive or something.
+enum HSBlockType:
+	...
+	Game = 8003
+	...
+```
+
+The specifics of this example are not really my favorite, but to really figure out what this will look like we will need to make a lot more progress on the hopscotchifier/compiler. It is okay for extensions to have to have some more knowledge of the compiler internals.
+
+Extensions should be able to be imported somehow, and should only affect files that opt-in to them (though should also be able to do some things over the whole project, but things like scopes defined in an extension should need to be explicitly opted-in to.)

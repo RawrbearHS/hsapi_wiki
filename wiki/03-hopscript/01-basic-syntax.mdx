@@ -1,0 +1,178 @@
+# Basic Syntax
+
+Here is a poorly-articulated idea for the basic syntax of the language, based on my experience with petrichorian hopscript which is based on tri-angle's htn examples. The syntax described here is basically petrichorian hopscript with some improvements. Do ask for any examples for things that you are confused about.
+
+What type of syntax and what values are allowed in a given place are based on what "context" that place is in.
+
+Starting at the very top of the file, you are in a top-level context. So you will be allowed to define custom blocks, scenes, or objects (which will just go to the very first scene), but not rules or method blocks.
+
+## Context-changing lines
+
+One way to change contexts is to have a context-changing line. These lines roughly are the same as something that has a container in the web explorer's editor – scenes, rules, condition blocks, etc.
+
+Generally these are either definitions like
+`<type of thing being defined> <required whitespace> <name of thing being defined> [optional parameters]:`
+or container blocks like
+`<name of block> [optional parameters]:`
+Container blocks such as `check_once_if` will obviously use the second option, but pretty much everything else would be more like the first. Some examples:
+`check_once_if 7 == 7:`
+^^ note how parentheses are optional for parameter lists with just a single unlabeled parameter
+
+`repeat_forever:`
+`Custom_block do_something(argument: "Default value", arg2: 0):`
+^^ See more notes on custom blocks later
+`Custom_rule ui_object:`
+`Custom_rule make_a_grid(width: 5, height: 7):`
+`Scene scene_1:`
+`bear rawrbear(x_position: 512, y_position: 384, resize_scale: 2):`
+`bird bird:`
+
+Each of these lines will do something different, as well as change the context. For example, the line `Custom_block go_to_center:` will:
+
+1. Define a custom block called `go_to_center` (or error if such a custom block already exists.)
+2. If in a context where custom blocks can be added (ie an ability), it will add a reference to the new custom block there.
+3. Change the context to the ability that the custom block uses.
+
+After a context changed in this way, the following lines will be indented one level further and will use the new context. To return to the previous context, unindent one level. For example:
+
+```hopscript
+Custom_block go_to_center:                                 # <- Top level context
+	set_position(to_x: Game.width / 2, y: Game.height / 2) # <- Ability for go_to_center context
+Scene game:                                                # <- Top level context
+	text petrichor(text: "🐠"):                            # <- Scene game context
+		message = "hello!"                                 # <- Object petrichor context
+		When game_starts:                                  # <- Object petrichor context
+			show_popup(message: message)                   # <- Ability for when game starts rule context
+	bird bird_grid:                                        # <- Scene game context
+		Custom_rule make_a_grid(width: 5, height: 5)       # <- Object bird context (notice that without the `:` at the end, this is just a reference to the custom rule)
+```
+
+## Parameters
+
+Another way to change context, this time for only part of a line, is with parameters.
+
+If the block has only one parameter which doesn't have a label (ie check_once_if) then the final value can be on its own. Otherwise, it is necessary to put the parameters in parentheses.
+Inside the parentheses is a comma-separated list of `<parameter label>: <value>`, or, if the parameter has no label, just the value.
+
+The value can be any expression, ie math blocks, conditional blocks, string literals, etc. Some contexts may restrict this further.
+
+## Custom blocks and rules
+
+In hopscript, custom blocks and rules are somewhat special. Unlike scenes or objects, defining them doesn't necessarily _use_ them. They can be defined in the top level, and will just be made available in that case. If defined in a top-level context, the parameters in their definition will only be the default values and therefore must be literal values, not expressions. If however they are defined in a place where they can be referenced, the definition will also function as a reference, and the parameters will accept expressions. We, as the developers of hopscript, will have to determine what happens to the default value of the parameter if it is defined with an expression. I don't think it really matters, and defaulting to `0` makes sense.
+
+They can also be used in different places than where they were defined by referencing them like:
+`Custom_block <name> [Optional parameters]`
+The same for custom rules, but with `rule` instead of `block`. The parameters are only optional if the custom block/rule was defined without any.
+
+## Variables
+
+Variables take the form of `<Scope>.<variable name>`, or just the variable name if that is not ambiguous. If the scope is not specified, it is assumed to be `Local`. The variable name can be a string literal, but then the scope _must_ be specified, even if the variable is local.
+
+Traits (the orange blocks such as invisibility as a %) are treated identically to variables. If you want to have a variable with the same name as a trait, its name will be a string literal. So `Self."Width"` would be a self variable called width, and `Self.width` would be the trait `width`. Suggestions for better ways to do this would be very helpful.
+The possible scopes in base hopscript are:
+`Game` – game variables
+`Self` – object variables referencing self
+`Original_object` – object variables referencing the original object
+`Local` – local variables
+`User` – user variables
+any defined object name – object variables referencing that object
+`Scenes` – A scene reference to the scene with the name provided as a variable name. Only valid in blocks that accept scene references. Needed because you can also use variables there. Also has the special `Scenes.Next`, `Scenes.Previous`, etc.
+Extensions should be able to define their own scopes. More on that in the extensions section.
+
+## Blocks
+
+There are a couple forms of blocks: expression blocks and method blocks.
+Both of them take the same form, but are usable in different contexts. Expression blocks are for inside parameters, while method blocks are for inside abilities.
+`<block name> [optional parameters]`
+The parameters are only optional if the block doesn't have any.
+If it is a container block, it must be a method block, and must have the line end with a `:`. This will make it a context changing line.
+
+## Binary operators
+
+There are certain binary operators that can be defined to be shorthand for a specific block in a specific context. So for example, in an ability context, the `=` binary operator would be shorthand for the `set(_:, to:)` block, but in an expression context, it would be shorthand for the `equals` block.
+The possible binary operators are:
+`=`, `-`, `/`, `*`, `+`, `^`, `!=`, `<=`, `>=`, `<`, `>`, `%`, `matches`, `and`, `or`
+The last three _must_ have whitespace before and after them, but the rest can have whitespace be optional.
+
+## Capitalization
+
+Anything that is hopscript specific should be in Capital_snake_case. Anything that comes directly from hopscotch data, such as block names/parameter labels, object type names, etc. are in regular snake_case. Regular snake_case is otherwise reserved for user-defined names.
+
+## Comments
+
+Comments start with `#` and the rest of the line is a comment. They can go in any context.
+
+## Possible contexts
+
+The possible contexts in base hopscript are:
+
+- top-level: What each file starts in. Allows custom block/rule definitions, scene definitions, import statements, object definitions. if an object is defined top-level, the scene it belongs to is the very first scene in the project. This will not be super-trivial to implement, but won't be hard.
+- Scene: The context after a scene definition. Allows object definitions.
+- Object: The context after an object or custom rule definition. If no rules or custom rules have been defined/referenced, it allows set variable blocks, custom rule references/definitions, rule definitions. It does not allow set variable blocks after the first rule/custom rule.
+- Ability: The context after a custom block definition, rule definition, or container block definition. Allows method blocks, custom block references/definitions.
+- Parameters: See the section on parameters above.
+- Expression: In parameters
+
+## Name hopscotchification
+
+Names are hopscotchified assuming they are snake*case. They are split into words by `*` characters, then the first word word has its first letter capitalized, and the words are then joined together with spaces.
+
+## Comment hopscotchification
+
+Hopscript allows comments in more places than hopscotch. Comments in areas that Hopscotch allows them will be included directly. Comments at the end of lines that are themselves in a place where comments are allowed (ie `repeat_forever: # main loop`) will be included before the hopscotchification of the rest of the line, but only when that will not affect the behavior of the code. Comments that cannot be reasonably included in the final project will be dropped.
+
+## Multi-file projects
+
+Multi-file projects are possible in hopscript. To include the code in another file, you can import it by including a statement like the following in a top level context:
+`Import "<path to file, relative to the current file>"`
+You can also import standard-library-like files by omitting the quotes. For example, to use advanced mode features, `Import advanced.hopscript`. This can be used for advanced mode, secret blocks, common mods like ae's mods, or common useful features/hopscript extensions like booleans.
+You can only reference things that are directly imported directly into the current file.
+So if file A imports file B which imports file C, file A can use custom blocks defined in file B but not file C.
+Restrictions on duplicate names apply to the entire project though.
+
+## How does hopscript know what blocks there are and what they should look like?
+
+When hopscotchifying, a file is implicitly imported that contains definitions of each of the blocks in non-advanced mode hopscotch. See the section on extensions below for more info about how this will work.
+
+## Whitespace
+
+Whitespace is accepted and ignored pretty much anywhere, though it is sometimes required. For example, these are interpreted the same:
+`set_position(to_x: Game.width / 2, y: Game.height / 2)`
+`set_position   (to_x   :Game.width/   2,y:Game.height/2      )`
+
+## Name restrictions
+
+Names can contain any character except what would cause the compiler to get confused. Currently the disallowed characters that I can think of are:
+
+- Any whitespace
+- #
+- (
+- )
+- =
+- "
+- ,
+- /
+- [
+- ]
+- :
+- -
+- -
+- -
+- %
+- ^
+- &lt;
+- >
+
+There are additional limits on the first character of a name that are okay in the rest of the name. These are:
+
+- any digits
+- \_
+
+## Block overloading
+
+In cases like create a clone, which has an optional parameter, or save input, which has an extra parameter in ae mod, it is useful to have a block with the same name and different parameters. This is allowed, but user-defined custom blocks/rules cannot allow this, which matches with how hopscotch handles it.
+
+## Things this syntax does not include that it should
+
+`When is_tapped Self:` is the way to do when self is tapped. It should be `When (Self) is_tapped` or something like that.
+
