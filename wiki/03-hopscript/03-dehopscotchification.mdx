@@ -4,15 +4,14 @@ It would be very nice to have 1 to 1 dehopscotchification, where any hopscotch p
 
 The hopscript compiler should provide a dehopscotchification function. It should be able to dehopscotchify completely unknown projects. it would also be nice to dehopscotchify something that was hopscotchified over the existing files, even if it was a multi-file project and modified in hopscotch, to improve interoperability with non-hopscript users in collaborations, for example.
 
-## Handling blocks that hopscript doesn't know about
-
-If the project being dehopscotchified contains a block that does not exactly match one that hopscript knows about, it will include the relevant code to define it. See the section on basic type definitions above for more on how.
-
 ## Name dehopscotchification
 
-Names will be dehopscotchified in the reverse of what is described in the name hopscotchification section above. If the dehopscotchified name will not be rehopscotchified to the same name, then it will use the string literal form of the name.
+Names will be dehopscotchified in the reverse of what is described in [name hopscotchification](/wiki/hopscript/basic-syntax#name-hopscotchification). If the dehopscotchified name will not be rehopscotchified to the same name, then it will use the string literal form of the name.
 
 ## Binary operators
 
 If a block has a binary operator associated with it, it will dehopscotchify to that binary operator instead of the parenthetical form. This can optionally be turned off.
 
+## Custom block definitions
+
+If the project being dehopscotchified contains a block that does not exactly match one that hopscript knows about, it will include the relevant code to define it. See the section on basic type definitions for more on how.

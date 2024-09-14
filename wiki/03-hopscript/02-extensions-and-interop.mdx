@@ -1,8 +1,8 @@
 # Extensions and Interop
 
-## Interoperability with regular hopscotch code
+## `.hopscotch` format interoperability
 
-You should be able to import hopscotch projects, or partial hopscotch projects (only includes certain top-level keys such as `abilities` or `objects`, but not all of them) just like regular hopscript files. We should at the very least support full hopscotch projects and ae's hspre and _mayeb_ hsprez formats, which are basically just partial hopscotch projects or zipped partial hopscotch projects. See the section on multi-file projects above for how this would behave to the user, and the section on name-dehopscotchification below for how names would work.
+You should be able to import hopscotch projects, or partial hopscotch projects (only includes certain top-level keys such as `abilities` or `objects`, but not all of them) just like regular hopscript files. We should at the very least support full hopscotch projects and ae's hspre and _mayeb_ hsprez formats, which are basically just partial hopscotch projects or zipped partial hopscotch projects. See the section on multi-file projects for how this would behave to the user, and the section on name-dehopscotchification below for how names would work.
 
 ## Extensions
 
@@ -14,13 +14,13 @@ This referes to not _really_ extensions of the language, rather just defining ne
 
 I do not have any idea what the specific syntax for this would be, but what I have in my current implementation, but do not like, is something like this following:
 
-### Defining object types:
+### Object types
 
 `_defineObjectType <name> <id> <filename> <width> <height>`
 example:
 `_defineObjectType text 1 "text-object.png" 74 55`
 
-### Defining blocks:
+### Blocks
 
 `_defineBlockType <block class> <name> <type> <json description> [parameters, if applicable]`
 the parameters take the format of:
@@ -34,27 +34,27 @@ A conditional operator:
 `_defineBlockType conditionalOperator(Boolean) less_than 1002 "＜" 57 _ "" "6", 57 _ "＜" "7", `
 ^^ conditional operators are, from hopscript's point of view identical to an operator/expression. However, for hopscotchification they are different.
 
-### Assigning binary operators:
+### Binary operators
 
 `_defineBinaryOperator <operator> <block name>`
 ^^ This exact format won't work directly in the hopscript described in this post, because it doesn't specify wheteher it is for the expression context or the method context.
 example:
 `_defineBinaryOperator - subtract`
 
-### Defining traits:
+### Traits
 
 `_defineTraitType <value type> <name> <type> <json description> [<scopes>]`
 example:
 `_defineTraitType Number rotation 2000 "Rotation" [Object, ]`
 
-### Defining parameter types:
+### Parameter types
 
 `_defineParameterType <type> <hopscript types>`
 Tells hopscript what type(s) each parameter type accepts. Useful for autocomplete suggestions, and for hopscotchification in some cases (primarily scenes)
 example:
 `_defineParameterType 42 String Number `
 
-### Setting requires_beta_editor
+### Setting `requires_beta_editor`
 
 `_setRequiresBetaEditor <boolean>`
 Sets the requires beta editor value in the project json. Needed exclusively for the advanced mode file to properly re-create how the app works.
