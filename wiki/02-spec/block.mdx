@@ -30,13 +30,24 @@ property, with some differences.
 ```
 
 
+### `description`
+
+<PropertyData type="string" />
+
+*Unused.*<Note note="needs research" /> The label of the [block type](#type).
+
+```json
+"description": "Draw a Trail"
+```
+
+
 ### `type`
 
 <PropertyData type="number" />
 
-An ID that corresponds to the block's type.
+An ID that corresponds to the block's type.<Note note="needs elaboration" />
 
-See below for a full list of possible values.
+See below for a full list of possible values:
 
 <Button
           label="Project Datatypes"
@@ -51,22 +62,45 @@ See below for a full list of possible values.
 
 
 ### `parameters` / `params`
-<Undocumented />
 
-### `description`
-<Undocumented />
+<PropertyData type="array" />
 
+Contains [parameter](/wiki/spec/parameter) objects for the block's arguments.
 
-## Ability Blocks
-
-
-## Datum Blocks
+#### Nuances
+- If the block is inside of an [ability](/wiki/spec/ability), the key is called `parameters`.
+- If the block is inside of a parameter's [`datum`](/wiki/spec/parameter#datum) property, the key is instead called `params`.
 
 
 ## Loops
 
+The following properties only exist in blocks with inner loops, such as Check Once If and Draw a Trail:
+
 ### `controlScript`
-<Undocumented />
+
+<PropertyData type="object" />
+
+Contains a single [`abilityID`](/wiki/spec/ability#abilityid) property, which references the [ability](/wiki/spec/ability)
+with the loop's contents.
+
+```json
+"controlScript": {
+          "abilityID": "F4911EE3-010E-F139-55C3-9B5D7F4B140B"
+}
+```
+
 
 ### `controlFalseScript`
 <Undocumented />
+<PropertyData type="object" />
+
+Only present on Check If Else blocks.
+
+Contains a single [`abilityID`](/wiki/spec/ability#abilityid) property, which references the [ability](/wiki/spec/ability)
+with the loop's `Else` contents.
+
+```json
+"controlFalseScript": {
+          "abilityID": "F4911EE3-010E-F139-55C3-9B5D7F4B140B"
+}
+```
