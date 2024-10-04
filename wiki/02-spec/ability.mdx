@@ -2,7 +2,7 @@ import {PropertyData} from '/src/components/PropertyData.tsx';
 
 # Ability
 
-Abilities are broadly classified as any group of [blocks](/wiki/spec/block), which are
+An ability is a collection of [blocks](/wiki/spec/block) that are always
 referenced by [rules](/wiki/spec/rule) and [loop blocks](/wiki/spec/block#loops).
 
 
@@ -12,7 +12,8 @@ referenced by [rules](/wiki/spec/rule) and [loop blocks](/wiki/spec/block#loops)
 
 <PropertyData type="string" />
 
-An ability's unique identifier, to be referenced elsewhere.
+The ability's unique identifier, referenced in
+[rules](/wiki/spec/rule#abilityid) and [loop blocks](/wiki/spec/block#controlscript).
 
 ```json
 "abilityID": "561D32F8-FD6B-45E0-9DFF-3191085E2351-3248-00005BE3B1E67098"
@@ -23,9 +24,10 @@ An ability's unique identifier, to be referenced elsewhere.
 
 <PropertyData type="number" />
 
-The ability's time of creation. Used to order custom blocks in the app's block picker.
+The creation timestamp of the ability, representing the number of seconds since
+January 1, 2001, 00:00 UTC.
 
-The decimal represents the number of seconds since January 1, 2001 at 00:00 UTC.
+Used to order custom blocks in the app's block picker.
 
 ```json
 "createdAt": 528311636.47971
@@ -38,10 +40,10 @@ The decimal represents the number of seconds since January 1, 2001 at 00:00 UTC.
 
 <PropertyData type="string" />
 
-The name of a custom block.
+The display name of a custom block.
 
-If this value is empty, the custom block will not appear in the app's block picker, and vice versa.
-Having an identical name as other custom blocks works fine.
+If empty, the custom block will not appear in the app's block picker.
+Blocks with identical names can coexist without issues.
 
 ```json
 "name": "Do a Cool Trick"
@@ -53,4 +55,8 @@ Having an identical name as other custom blocks works fine.
 
 <PropertyData type="array" />
 
-Contains object references to the [blocks](/wiki/spec/block) within the ability.
+Contains object references to any [blocks](/wiki/spec/block) in the ability.
+
+```json
+"blocks": []
+```
