@@ -1,27 +1,433 @@
 import Undocumented from '/src/components/Undocumented.tsx';
+import {PropertyData} from '/src/components/PropertyData.tsx';
+import Note from '/src/components/Note.tsx';
+import Details from '/src/components/Details.tsx';
 
 
 # Parameter
 
-<Undocumented message="Coming soon!" />
+Parameters are objects in the [block](/wiki/spec/block)'s [`parameters`](/wiki/spec/block#parameters--params) array.
 
 
-## Properties
+## Common Properties
+
 
 ### `datum`
-<Undocumented />
+
+<PropertyData type="object" />
+
+*See the [Datum](#datum-1) section.*
+
 
 ### `defaultValue`
-<Undocumented />
+
+<PropertyData type="string" />
+
+The default value of the parameter, as shown in the mobile app editor
+when a parameter is left empty.
+
+```json
+"defaultValue": "50"
+```
+
 
 ### `key`
-<Undocumented />
+
+<PropertyData type="string" />
+
+The label for the parameter.
+
+This value can be modified to change the parameter's display name in the editor,
+unlike other attributes of a block which are hardcoded to its block type.
+(This is used to label some blocks which don't have hardcoded block names, such as Wait Til Timestamp.)
+However, key modifications are not guaranteed to work with certain block types, such as Set Invisibility.<Note note="needs verification" />
+
+```json
+"key": "percent"
+```
+
 
 ### `type`
-<Undocumented />
+
+<PropertyData type="number" />
+
+A magic number that corresponds to the parameter's type and behavior.<Note note="needs verification" />
+
+For a full list of possible values, see [Viewing Types](/wiki/spec/overview#viewing-types).
+
+```json
+"type": 57
+```
 
 ### `value`
-<Undocumented />
+
+<PropertyData type="string" />
+
+The parameter's value.
+
+```json
+"value": "100"
+```
 
 ### `variable`
+
+<PropertyData type="string" />
+
+*Optional.* An ID used in [rules](/wiki/spec/rule) to reference
+[event parameters](/wiki/spec/event-parameter). Overrides the `value` parameter with its contents.
+
+If `datum` does not exist, then the player will attempt to find the following types with this reference:
+
+1. Variable (If this isn't found, the player will try to find a...)
+2. Trait
+3. Event parameter
+
+<Undocumented message="Example missing."/>
+
+
+## Datum
+
+The `datum` property determines the parameter's data contents.
+Each datum exclusively contains one of the following:
+
+- An operator [block](/wiki/spec/block)
+  - Includes HSB, RGB and randomized color operators
+- `variable` property with a [variable](/wiki/spec/variable) reference
+- A [trait](/wiki/spec/trait) object
+- An image for the Set Image [block](/wiki/spec/block)<Note note="needs elaboration" />
+
+The player checks `datum` objects in the following order:<Note note="needs verification" />
+
+1. Images within Set Image [blocks](/wiki/spec/block)
+2. [Variable](/wiki/spec/variable) references
+3. [Traits](/wiki/spec/trait) and [blocks](/wiki/spec/block)
+
+<Undocumented message="A list of datum parameters has not yet been added to this section." />
+
+
+### Operator Blocks
+
+Here is a Move Forward block with an addition (`+`) operator block as its datum:
+
+<p><img src="/img/parameters/addition-datums-example.png"
+	alt="Move forward by negative one, plus ten"
+height="50" /></p>
+
+```json
+{
+	"block_class": "method",
+	"type": 23,
+	"description": "Move Forward",
+	"parameters": [{
+		"value": "100",
+		"defaultValue": "100",
+		"key": "",
+		"type": 57, // MultiPurposeNumberDefault: parameter
+		"datum": {
+			"keyboardName": "Add",
+			"block_class": "operator",
+			"type": 4000, // MathOperatorAdd: block
+			"description": "+",
+			"params": [{
+				"defaultValue": "2",
+				"value": "-1",
+				"key": "",
+				"type": 57
+			}, {
+				"defaultValue": "3",
+				"value": "10",
+				"key": "+",
+				"type": 57
+			}]
+		}
+	}]
+}
+```
+
+Math operator datums are commonly nested:
+
+<p><img src="/img/parameters/nested-random-example.png"
+	alt="Change X by negative one, plus a random number between ten and fifty"
+height="50" /></p>
+
+```json
+{
+	"block_class": "method",
+	"description": "Change X by",
+	"type": 27,
+	"parameters": [{
+		"value": "100",
+		"defaultValue": "100",
+		"key": "",
+		"type": 57, // MultiPurposeNumberDefault: parameter
+		"datum": {
+			"keyboardName": "Add",
+			"block_class": "operator",
+			"type": 4000, // MathOperatorAdd: block
+			"description": "+",
+			"params": [{
+				"defaultValue": "2",
+				"value": "-1",
+				"key": "",
+				"type": 57 // MultiPurposeNumberDefault: parameter
+			}, {
+				"defaultValue": "3",
+				"value": "3",
+				"key": "+",
+				"type": 57, // MultiPurposeNumberDefault: parameter
+				"datum": {
+					"block_class": "operator",
+					"type": 4004, // MathOperatorRandom: parameter
+					"description": "Random",
+					"params": [{
+						"defaultValue": "1",
+						"value": "10",
+						"key": "",
+						"type": 45 // RandomLow: parameter
+					}, {
+						"defaultValue": "100",
+						"value": "50",
+						"key": "to",
+						"type": 46 // RandomHigh: parameter
+					}]
+				}
+			}]
+		}
+	}]
+}
+```
+
+
+### Color Operator Blocks
+
+#### Plain colors
+
+Colors picked from the editor's color palette **do not use datums.**
+
+:::note
+
 <Undocumented />
+{/* Move this to a better place. */}
+The `value` property can be edited. Changes are reflected in the editor view accordingly.
+
+However, if a datum is added, this value will be overridden.
+
+:::
+
+<p><img src="/img/parameters/plain-trail-color.png"
+	alt="Set trail color to pure black"
+height="50" /></p>
+
+```json
+{
+	"block_class": "method",
+	"description": "Set Trail Color",
+	"type": 32,
+	"parameters": [{
+		"defaultValue": "HSB(288,57,43)",
+		"value": "HSB(0,0,0)",
+		"key": "to",
+		"type": 44 // LineColor: parameter
+	}]
+}
+```
+
+#### Random colors
+
+<p><img src="/img/parameters/random-trail-color.png"
+	alt="Set trail color to a random one"
+height="50" /></p>
+
+```json
+{
+	"block_class": "method",
+	"description": "Set Trail Color",
+	"type": 32,
+	"parameters": [{
+		"defaultValue": "HSB(288,57,43)",
+		"value": "HSB(353,96,83)", // plain color value is overridden by datum
+		"key": "to",
+		"type": 44, // LineColor: parameter
+		"datum": {
+			"type": 5000, // ColorOperatorRandom: block
+			"block_class": "operator",
+			"description": "Random"
+		}
+	}]
+}
+```
+
+#### RGB colors
+
+<p><img src="/img/parameters/set-trail-color-rgb.png"
+	alt="Set RGB color to magenta"
+height="50" /></p>
+
+```json
+{
+	"block_class": "method",
+	"description": "Set Trail Color",
+	"type": 32,
+	"parameters": [{
+		"defaultValue": "HSB(288,57,43)",
+		"value": "HSB(288,57,43)", // plain color value is overridden by datum
+		"key": "to",
+		"type": 44, // LineColor: parameter
+		"datum": {
+			"type": 5001, // ColorOperatorRGB: block
+			"block_class": "operator",
+			"description": "RGB",
+			"params": [{
+				"value": "255",
+				"defaultValue": "34",
+				"key": "R",
+				"type": 57 // MultiPurposeNumberDefault: parameter
+			}, {
+				"value": "0",
+				"defaultValue": "246",
+				"key": "G",
+				"type": 57 // MultiPurposeNumberDefault: parameter
+			}, {
+				"value": "255",
+				"defaultValue": "217",
+				"key": "B",
+				"type": 57 // MultiPurposeNumberDefault: parameter
+			}]
+		}
+	}]
+}
+```
+
+#### HSB colors
+
+<p><img src="/img/parameters/set-trail-color-hsb.png"
+	alt="Set HSB color to magenta"
+height="50" /></p>
+
+```json
+{
+	"block_class": "method",
+	"description": "Set Trail Color",
+	"type": 32,
+	"parameters": [{
+		"defaultValue": "HSB(288,57,43)",
+		"value": "HSB(288,57,43)", // plain color value is overridden by datum
+		"key": "to",
+		"type": 44, // LineColor: parameter
+		"datum": {
+			"type": 5002, // ColorOperatorHSB: block
+			"block_class": "operator",
+			"description": "HSB",
+			"params": [{
+				"value": "172",
+				"defaultValue": "172",
+				"key": "H",
+				"type": 57 // MultiPurposeNumberDefault: parameter
+			}, {
+				"value": "86",
+				"defaultValue": "86",
+				"key": "S",
+				"type": 57 // MultiPurposeNumberDefault: parameter
+			}, {
+				"value": "96",
+				"defaultValue": "96",
+				"key": "B",
+				"type": 57 // MultiPurposeNumberDefault: parameter
+			}]
+		}
+	}]
+}
+```
+
+
+### Variable References
+
+#### Local variables
+
+<p><img src="/img/parameters/set-local-var.png"
+	alt="Set local variable to 10"
+height="50" /></p>
+
+```json
+{
+	"block_class": "method",
+	"type": 45, // SetVariable: block
+	"description": "Set",
+	"parameters": [{
+		"value": "",
+		"defaultValue": "",
+		"key": "",
+		"type": 47, // Variable: parameter
+		"datum": {
+			"type": 8009, // Scoped: block
+			"description": "Local Variable",
+			"name": "localVar"
+		}
+	}, {
+		"value": "10",
+		"defaultValue": "10",
+		"key": "to",
+		"type": 48 // VariableValue: parameter
+	}]
+}
+```
+
+
+### Traits
+
+### Nested Datums
+
+The following example is the JSON structure for this block,
+which includes a variety of datums:
+
+<p><img src="/img/parameters/nested-datums-example.png"
+	alt="Turn degrees block, with the parameter 90 plus the sine of variable gameVar"
+height="50" /></p>
+
+```json
+{
+	"block_class": "method",
+	"type": 24,
+	"description": "Turn",
+	"parameters": [{
+		"value": "90",
+		"defaultValue": "90",
+		"key": "degrees",
+		"type": 57,
+		"datum": {
+			"keyboardName": "Add",
+			"block_class": "operator",
+			"type": 4000,
+			"description": "+",
+			"params": [{
+				"defaultValue": "2",
+				"value": "90",
+				"key": "",
+				"type": 57
+			}, {
+				"defaultValue": "3",
+				"value": "3",
+				"key": "+",
+				"type": 57,
+				"datum": {
+					"keyboardName": "Sine",
+					"block_class": "operator",
+					"type": 4007,
+					"description": "Sin",
+					"params": [{
+						"defaultValue": "45",
+						"value": "3",
+						"key": "",
+						"type": 57,
+						"datum": {
+							"variable": "D9D0EA2D-C656-7C7A-8843-EF5716D2909C",
+							"description": "Variable",
+							"type": 8003
+						}
+					}]
+				}
+			}]
+		}
+	}]
+}
+```

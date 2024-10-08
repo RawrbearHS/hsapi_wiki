@@ -1,14 +1,13 @@
 import {PropertyData} from '/src/components/PropertyData.tsx';
-import Button from '/src/components/Button.tsx';
 import Undocumented from '/src/components/Undocumented.tsx';
 import Note from '/src/components/Note.tsx';
 
 
 # Block
 
-Blocks are objects listed inside of [abilities](/wiki/spec/ability).
-They are also included in the [parameter](/wiki/spec/parameter)'s [`datum`](/wiki/spec/parameter#datum)
-property, with some differences.
+Blocks are objects in [abilities](/wiki/spec/ability) and the
+[`datum`](/wiki/spec/parameter#datum) property of [parameters](/wiki/spec/parameter), with
+[one minor difference](#parameters--params) between these contexts.
 
 
 ## Common Properties
@@ -17,13 +16,17 @@ property, with some differences.
 
 <PropertyData type="string" />
 
-*Unused.* Represents the block's class type. Possible values include:<Note note="needs elaboration" />
+Represents the block's class type.
+
+Possible values include:<Note note="needs elaboration" />
 
 - `"method"`: for loopless blocks, such as Move Forward, Set Variable, Comment, etc.
 - `"conditionalControl"`: for Check Once and Check If Else loops.
 - `"control"`: for Draw a Trail and other loop blocks.<Note note="needs verification" />
 - `"conditionalOperator"`: for conditional operators, including `=`, `≠`, `<` and `>`.
 - `"operator"`: for math and string operators, such as `+`, `-`, `×`, `÷`, Random, and HSB.
+
+Unused.<Note note="needs research" />
 
 ```json
 "block_class": "conditionalControl"
@@ -34,7 +37,9 @@ property, with some differences.
 
 <PropertyData type="string" />
 
-*Unused.*<Note note="needs research" /> The label of the [block type](#type).
+The label of the [block type](#type).
+
+*Unused.*<Note note="needs research" />
 
 ```json
 "description": "Draw a Trail"
@@ -45,16 +50,9 @@ property, with some differences.
 
 <PropertyData type="number" />
 
-An ID that corresponds to the block's type.<Note note="needs elaboration" />
+A magic number that corresponds to the block's type and behavior.<Note note="needs verification" />
 
-See below for a full list of possible values:
-
-<Button
-          label="Project Datatypes"
-          variant="secondary"
-          link="https://jsonhero.io/new?url=https://hs-tools-api.up.railway.app/webplayer/2.0/project-datatypes"
-          outline external
-/>
+For a full list of possible values, see [Viewing Types](/wiki/spec/overview#viewing-types).
 
 ```json
 "type": 41
@@ -65,7 +63,7 @@ See below for a full list of possible values:
 
 <PropertyData type="array" />
 
-Contains [parameter](/wiki/spec/parameter) objects for the block's arguments.
+Contains the block's [parameter](/wiki/spec/parameter) objects.
 
 #### Nuances
 - If the block is inside of an [ability](/wiki/spec/ability), the key is called `parameters`.
@@ -74,14 +72,15 @@ Contains [parameter](/wiki/spec/parameter) objects for the block's arguments.
 
 ## Loops
 
-The following properties only exist in blocks with inner loops, such as Check Once If and Draw a Trail:
+The following properties only exist in blocks with inner loops, such as
+Check Once If and Draw a Trail:
 
 ### `controlScript`
 
 <PropertyData type="object" />
 
-Contains a single [`abilityID`](/wiki/spec/ability#abilityid) property, which references the [ability](/wiki/spec/ability)
-with the loop's contents.
+Contains an [`abilityID`](/wiki/spec/ability#abilityid) property, referencing the
+[ability](/wiki/spec/ability) with the loop's contents.
 
 ```json
 "controlScript": {
@@ -96,8 +95,8 @@ with the loop's contents.
 
 Only present on Check If Else blocks.
 
-Contains a single [`abilityID`](/wiki/spec/ability#abilityid) property, which references the [ability](/wiki/spec/ability)
-with the loop's `Else` contents.
+Contains an [`abilityID`](/wiki/spec/ability#abilityid) property, referencing the
+[ability](/wiki/spec/ability) with the loop's `Else` contents.
 
 ```json
 "controlFalseScript": {

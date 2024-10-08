@@ -25,6 +25,13 @@ Document all valid player versions. Elaborate on the different features/changelo
 `block_class`
 Are there any specific examples that are missing here?
 
+The unused attributes need some research.
+
+# Parameter
+
+`datum`
+Describe what image data looks like.
+
 # Version History
 
 - How do older v<=24 players work on the web player?

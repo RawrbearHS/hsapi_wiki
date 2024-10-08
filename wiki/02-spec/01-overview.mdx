@@ -1,10 +1,37 @@
 import Note from '/src/components/Note.tsx';
 import Undocumented from '/src/components/Undocumented.tsx';
+import Button from '/src/components/Button.tsx';
 
 
 # Overview
 
-Hopscotch projects are JSON files. They are stored on the mobile app as `.hopscotch` files.
+Hopscotch projects are [JSON files](https://en.wikipedia.org/wiki/JSON). They are stored on the mobile app as `.hopscotch` files.
+
+Essentially, [JSON (JavaScript Object Notation)](https://en.wikipedia.org/wiki/JSON) is a file format which organizes data using pairs of names and values,
+like a checklist, which both people and computers can easily read. For example:
+
+```json
+{ // {} means it's a list of pairs
+	"name": "Alice",
+	"age": 12,
+	"homework_finished": false,
+	"hobbies": ["coding", "drawing"], // [] means it's a list of single items
+	"pets": [ // {} inside of [] count as single items!
+		{
+			"name": "bailey",
+			"age": 2,
+			"bio": { // {} inside of {}? No problem!
+				"description": "My lovely puppy!",
+				"status": "adorable"
+			}
+		},
+		{
+			"name": "max",
+			"age": 7
+		}
+	]
+}
+```
 
 ## Anatomy
 
@@ -24,3 +51,39 @@ Projects are essentially containers inside of containers:
 ## Viewing `.hopscotch` Files
 
 <Undocumented message="Coming soon!" />
+
+## Viewing Types
+
+Types are magic numbers used in blocks, objects and parameters, which define their behavior.
+
+Use the HS Tools API to view the latest data.
+
+:::tip
+
+Due to the webplayer's data format, keys that end with zeroes will be formatted in scientific notation. For instance:
+
+- `300` becomes `3e2`
+- `4000` becomes `4e3`
+
+:::
+
+### Plain JSON Response
+
+<Button
+          label="HS Tools API: Project Datatypes (API)"
+          variant="secondary"
+          link="https://hs-tools-api.up.railway.app/webplayer/2.0/project-datatypes"
+          outline external
+/>
+
+### JSON Hero
+
+An external website which neatly categorizes the data into sections.
+*(We aren't affiliated with JSON Hero.)*
+
+<Button
+          label="HS Tools API: Project Datatypes (JSON Hero)"
+          variant="secondary"
+          link="https://jsonhero.io/new?url=https://hs-tools-api.up.railway.app/webplayer/2.0/project-datatypes"
+          outline external
+/>

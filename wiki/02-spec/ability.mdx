@@ -20,6 +20,17 @@ The ability's unique identifier, referenced in
 ```
 
 
+### [`blocks`](/wiki/spec/block)
+
+<PropertyData type="array" />
+
+Contains [block](/wiki/spec/block) objects in the ability.
+
+```json
+"blocks": []
+```
+
+
 ### `createdAt`
 
 <PropertyData type="number" />
@@ -42,21 +53,9 @@ Used to order custom blocks in the app's block picker.
 
 The display name of a custom block.
 
-If empty, the custom block will not appear in the app's block picker.
+If empty, a custom block will not appear in the app's block picker.
 Blocks with identical names can coexist without issues.
 
 ```json
 "name": "Do a Cool Trick"
-```
-
-## ID Arrays
-
-### [`blocks`](/wiki/spec/block)
-
-<PropertyData type="array" />
-
-Contains object references to any [blocks](/wiki/spec/block) in the ability.
-
-```json
-"blocks": []
 ```
