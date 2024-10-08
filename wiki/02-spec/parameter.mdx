@@ -88,12 +88,13 @@ If `datum` does not exist, then the player will attempt to find the following ty
 ## Datum
 
 The `datum` property determines the parameter's data contents.
-Each datum exclusively contains one of the following:
+
+Each datum exclusively contains one of the following (see each respective page for more information):
 
 - An operator [block](/wiki/spec/block)
   - Includes HSB, RGB and randomized color operators
+- A [trait](/wiki/spec/trait)
 - `variable` property with a [variable](/wiki/spec/variable) reference
-- A [trait](/wiki/spec/trait) object
 - An image for the Set Image [block](/wiki/spec/block)<Note note="needs elaboration" />
 
 The player checks `datum` objects in the following order:<Note note="needs verification" />
@@ -102,10 +103,8 @@ The player checks `datum` objects in the following order:<Note note="needs verif
 2. [Variable](/wiki/spec/variable) references
 3. [Traits](/wiki/spec/trait) and [blocks](/wiki/spec/block)
 
-<Undocumented message="A list of datum parameters has not yet been added to this section." />
 
-
-### Operator Blocks
+### Math Operator Blocks
 
 Here is a Move Forward block with an addition (`+`) operator block as its datum:
 
@@ -344,6 +343,9 @@ height="50" /></p>
 
 #### Local variables
 
+Local variables are fully scoped within the datum, bypassing the need for a
+[variable](/wiki/spec/variable) reference:
+
 <p><img src="/img/parameters/set-local-var.png"
 	alt="Set local variable to 10"
 height="50" /></p>
@@ -365,6 +367,47 @@ height="50" /></p>
 		}
 	}, {
 		"value": "10",
+		"defaultValue": "10",
+		"key": "to",
+		"type": 48 // VariableValue: parameter
+	}]
+}
+```
+
+
+#### Other variables
+
+Object, Self and Global variables store a reference to an external [variable](/wiki/spec/variable).
+
+The `object` property is only included in object variables.
+It is a reference to the [object](/wiki/spec/object) the variable is stored in.
+
+<p><img src="/img/parameters/set-heart-object-var.png"
+	alt="Set heart object variable to 30"
+height="50" /></p>
+
+```json
+{
+	"block_class": "method",
+	"type": 45, // SetVariable: block
+	"description": "Set",
+	"parameters": [{
+		"value": "",
+		"defaultValue": "",
+		"key": "",
+		"type": 47, // Variable: parameter
+		"datum": {
+			"variable": "9A4C3DCD-5C4A-B35C-6C32-0D519B578B9E",
+			"description": "Variable",
+			// The variable type here can be the following:
+			// 8000, Object: block
+			// 8003, Game: block
+			// 8004, Self: block
+			"type": 8000, // Object: block
+			"object": "83217D2E-F034-4457-3BCB-48B715AFA3AD"
+		}
+	}, {
+		"value": "30",
 		"defaultValue": "10",
 		"key": "to",
 		"type": 48 // VariableValue: parameter
