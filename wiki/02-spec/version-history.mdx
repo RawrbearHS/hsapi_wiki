@@ -1,4 +1,5 @@
 import Undocumented from '/src/components/Undocumented.tsx';
+import Note from '/src/components/Note.tsx';
 
 
 # Version History
@@ -7,9 +8,9 @@ import {ExternalLinkIcon} from "/src/components/ExternalLinkIcon.tsx";
 import Button from "/src/components/Button.tsx";
 
 
-export const PlayerVersion = ({children, version}) => (
+export const PlayerVersion = ({children, version, date}) => (
           <div>
-                    <h3>{version}</h3>
+                    <h3>{version} {date ? "(" + (new Date(date)).toLocaleDateString() + ")" : ""}</h3>
                     <Button
                               label={version + " Web Player Source"}
                               variant="secondary"
@@ -19,13 +20,7 @@ export const PlayerVersion = ({children, version}) => (
           </div>
 );
 
-## Player Versions
-
-### 2.X
-
-Player versions `>=2.0` are currently shipped in production.
-
-[Project types](/wiki/spec/overview#viewing-types) are shared between all web player versions.
+Project datatypes are shared between all web player versions.
 
 :::info
 
@@ -34,15 +29,405 @@ been added to the webplayer yet.
 
 :::
 
-<PlayerVersion version="2.0.9" />
 
-<PlayerVersion version="2.1.7" />
+<Button
+          label="Project Datatypes"
+          variant="secondary"
+          link="https://jsonhero.io/new?url=https://hs-tools-api.up.railway.app/webplayer/2.0/project-datatypes"
+          outline external
+/>
 
-<PlayerVersion version="2.2.3" />
+## Player Versions
 
+### 3.X
+Player versions `>=3.0.0` are currently shipped in production.
 
-### 1.X (Legacy)
+<PlayerVersion version="3.0.0" date="2023-07-10Z-0500" />
+<Undocumented message="Coming soon!" />
 
+### 2.X
+
+#### 2.2.X
+<PlayerVersion version="2.2.3" date="2023-03-23Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="2.2.2" date="2023-03-01Z-0500" />
+Some changes in `computedBooleanValue`.<Note note="needs research" />
+
+<PlayerVersion version="2.2.1" date="2023-02-21Z-0500" />
+Changes in `computedValue`.<Note note="needs research" />
+
+<PlayerVersion version="2.2.0" date="2023-02-10Z-0500" />
+Changes how/where values get stringified.<Note note="needs research" />
+
+#### 2.1.X
+<PlayerVersion version="2.1.7" date="2023-03-27Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="2.1.6" date="2023-02-22Z-0500" />
+Changes prompts slightly.
+
+<PlayerVersion version="2.1.5" date="2023-02-13Z-0500" />
+Changes the internal name of StrokeWidth to SetTrailWidth and StrokeHeight to SetTrailHeight. This matches the names in the editor. Adds set trail cap, set trail opacity, join, and show popup blocks. More changes.<Note note="needs research" />
+
+<PlayerVersion version="2.1.4" date="2022-12-01Z-0500" />
+Minor drawing changes.<Note note="needs research" />
+
+<PlayerVersion version="2.1.3" date="2022-10-27Z-0500" />
+Adds scene reference, previous scene, and next scene blocks.<Note note="needs research" /> Possibly more?<Note note="needs research" />
+
+<PlayerVersion version="2.1.2" date="2022-09-19Z-0500" />
+Parses active scene from json and starts at that scene.
+
+<PlayerVersion version="2.1.1" date="2022-06-27Z-0500" />
+Changed project link API base to work better with web explorer.
+
+<PlayerVersion version="2.1.0" date="2022-06-07Z-0500" />
+Possibly changes `HSStageVariable`.<Note note="needs research" /> Changes how initial user variable values are parsed.<Note note="needs research" /> Possibly more?<Note note="needs research" />
+
+#### 2.0.X
+<PlayerVersion version="2.0.9" date="2023-03-27Z-0500" />
+Changes how When i hear a loud noise events are handled.<Note note="needs research" />
+
+<PlayerVersion version="2.0.8" date="2023-02-22Z-0500" />
+Changes prompts similarly to 1.5.27
+
+<PlayerVersion version="2.0.7" date="2023-02-13Z-0500" />
+Changes the internal name of StrokeWidth to SetTrailWidth and StrokeHeight to SetTrailHeight. This matches the names in the editor. Adds set trail cap, set trail opacity, join, and show popup blocks. Parses initial object rotation from the json. Adds `HSStageParameter.prototype.computedLineCap()`. More changes.<Note note="needs research" />
+
+<PlayerVersion version="2.0.6" date="2022-12-02Z-0500" />
+Minor drawing changes.<Note note="needs research" />
+
+<PlayerVersion version="2.0.5" date="2022-10-27Z-0500" />
+Adds scene reference, previous scene, and next scene blocks. More changes.<Note note="needs research" />
+
+<PlayerVersion version="2.0.4" date="2022-06-27Z-0500" />
+Changes project link API base to work better with web explorer.
+
+<PlayerVersion version="2.0.3" date="2022-04-25Z-0500" />
+Adds set background block. More changes.<Note note="needs research" />
+
+<PlayerVersion version="2.0.2" date="2022-03-17Z-0500" />
+Changes in `HSStageObjectBase`.<Note note="needs research" />
+
+<PlayerVersion version="2.0.1" date="2022-03-10Z-0500" />
+Changes bring to front and send to back.<Note note="needs research" /> Changes how prompt uuids are generated.<Note note="needs research" /> Adds `HSCustomObject.prototype.stageParameterBlock`.<Note note="needs research" />
+
+<PlayerVersion version="2.0.0" date="2022-03-08Z-0500" />
+<Undocumented message="Coming soon!" />
+
+### 1.X
+
+#### 1.5.X
+<PlayerVersion version="1.5.27" date="2023-02-22Z-0500" />
+Changes some css on popups. Changes prompts slightly.<Note note="needs research" />
+
+<PlayerVersion version="1.5.26" date="2023-02-13Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.5.25" date="2022-12-02Z-0500" />
+Minor drawing changes.
+
+<PlayerVersion version="1.5.24" date="2022-10-27Z-0500" />
+Adds scene reference, previous scene, and next scene blocks. Reads the active scene index from the json and starts at that scene. Possibly changes `HSManagedObject` somewhat?<Note note="needs research" /> More changes.<Note note="needs research" />
+
+<PlayerVersion version="1.5.23" date="2022-06-27Z-0500" />
+Changes API url base to work better with web explorer.
+
+<PlayerVersion version="1.5.22" date="2022-03-10Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.5.21" date="2022-03-08Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.5.20" date="2021-11-23Z-0500" />
+Adds comment block, which is immediate.
+
+<PlayerVersion version="1.5.19" date="2021-11-12Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.5.18" date="2021-09-29Z-0500" />
+Adds not and is flipped blocks. Adds name trait. Updates some dependencies. Simplifies some of the alchemy to determine max line width for text, now it is min(600, stageWidth). Parses object names from json.
+
+<PlayerVersion version="1.5.17" date="2021-09-29Z-0500" />
+Collision bug fixes?<Note note="needs research" /> 
+
+<PlayerVersion version="1.5.16" date="2021-08-12Z-0500" />
+Removes code to extract a uuid from a project link. Rounds numbers to 6 digits after the decimal place. Fixes the matches block when the regular expression is invalid. Moves current player name checking to function. Some changes in `HSTextTextureFactory`.<Note note="needs research" /> Uses a call to the Hopscotch API to determine how to link to projects.
+
+<PlayerVersion version="1.5.15" date="2021-07-28Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.5.14" date="2021-02-26Z-0500" />
+Unlocks sound playing after more types of user interaction
+
+<PlayerVersion version="1.5.13" date="2021-02-02Z-0500" />
+Adds "choir" instrument.
+
+<PlayerVersion version="1.5.12" date="2021-01-20Z-0500" />
+Adds play note, set tempo, and set instrument blocks. Adds tempo and instrument traits. More changes.<Note note="needs research" />
+
+<PlayerVersion version="1.5.11" date="2020-12-23Z-0500" />
+Changes communication with iOS app's main process.<Note note="needs research" /> Changes custom image caching slightly.<Note note="needs research" />
+
+<PlayerVersion version="1.5.10" date="2020-12-22Z-0500" />
+Identical to 1.5.9.
+
+<PlayerVersion version="1.5.9" date="2020-11-30Z-0500" />
+Changes how the message matches block works slightly.<Note note="needs research" />
+
+<PlayerVersion version="1.5.8" date="2020-11-09Z-0500" />
+Classifies request seeds as a variable block.
+
+<PlayerVersion version="1.5.7" date="2020-10-30Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.5.6" date="2020-10-15Z-0500" />
+Adds the request seeds block. Adds product variables. Adds `computedBooleanValue` method to `HSStageParameter`. Uses `computedBooleanValue` instead of `computedValue` for `HSStageControl.script`.<Note note="needs research" /> Changes variables in managed objects.<Note note="needs research" />
+
+<PlayerVersion version="1.5.5" date="2020-09-28Z-0500" />
+Adds when is not touching block. Bug fixes for object variables of nonexistent objects.<Note note="needs research" /> Does not round numbers that are already integers. Changes prompts.<Note note="needs research" /> Bug fix for heard message rules with self vars.<Note note="needs research" /> <!--https://forum.gethopscotch.com/t/self-variable-in-message-rules-breaks-project-when-self-variable-is-empty/56147?u=petrichor post by petrichor, is archived-->
+
+<PlayerVersion version="1.5.4" date="2020-08-20Z-0500" />
+Changes how user variables get their initial value.<Note note="needs research" />
+
+<PlayerVersion version="1.5.3" date="2020-08-17Z-0500" />
+Adds username, time, year, month, day, hour, minute, second traits. Changes internal name of game variables from `Device` to `Game`. Adds local and user variables. More changes.<Note note="needs research" />
+
+<PlayerVersion version="1.5.2" date="2020-07-17Z-0500" />
+Adds wait until input is done, when message matches, character at index, characters between, and length blocks. Changes communication with ios app's main process.<Note note="needs research" /> More changes.<Note note="needs research" />
+
+<PlayerVersion version="1.5.1" date="2020-06-25Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.5.0" date="2020-05-26Z-0500" />
+Adds string support. Adds save input, set text to input, broadcast message, matches, when I get a message blocks. Adds text trait. More changes.<Note note="needs research" />
+
+#### 1.4.X
+<PlayerVersion version="1.4.9" date="2022-12-02Z-0500" />
+Reads active scene from json and starts project on that scene before any others. Minor drawing change.<Note note="needs research" />
+
+<PlayerVersion version="1.4.8" date="2022-03-10Z-0500" />
+Preprocesses json with custom rule instances
+
+<PlayerVersion version="1.4.7" date="2021-09-08Z-0500" />
+Collision bug fixes.<Note note="needs research" />
+
+<PlayerVersion version="1.4.6" date="2021-08-04Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.4.5" date="2020-07-22Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.4.4" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.4.3" date="2020-06-25Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.4.2" date="2020-05-13Z-0500" />
+Adds floor and ceiling blocks. Changes fullscreen requests and player resizing.<Note note="needs research" />
+
+<PlayerVersion version="1.4.1" date="2020-03-20Z-0500" />
+Changes checks for iOS app player to a function. Gets accelerometer data from the iOS app. Changes accelerometer permission request.
+
+<PlayerVersion version="1.4.0" date="2020-03-04Z-0500" />
+<Undocumented message="Coming soon!" />
+
+#### 1.3.X
+<PlayerVersion version="1.3.12" date="2022-03-10Z-0500" />
+Preprocesses newer projects to deal with custom rule instances.<Note note="needs research" /> Might do more.<Note note="needs research" />
+
+<PlayerVersion version="1.3.11" date="2020-07-22Z-0500" />
+Changes max line width from 600 to 512.
+
+<PlayerVersion version="1.3.10" date="2020-06-25Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.3.9" date="2020-05-13Z-0500" />
+Adds floor and ceiling blocks.
+
+<PlayerVersion version="1.3.8" date="2020-04-21Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.3.7" date="2020-03-20Z-0500" />
+Moves checking for iOS app to function. Gets accelerometer data from the iOS app's main process.<Note note="needs research" /> Request permission for accelerometer on iOS 13+ browsers.<Note note="needs research" />
+
+<PlayerVersion version="1.3.6" date="2020-03-04Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.3.5" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.3.4" date="2019-12-09Z-0500" />
+Rounds input to conditional operators to 5 decimal digits.<Note note="needs research" />
+
+<PlayerVersion version="1.3.3" date="2019-11-26Z-0500" />
+Adds When Touch Ends block. More changes.<Note note="needs research" />
+
+<PlayerVersion version="1.3.2" date="2019-11-20Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.3.1" date="2019-11-12Z-0500" />
+Adds wait seconds block. Adds CrocodileJaws character. Adds destroy queue system of destroying objects.<Note note="needs research" /> Changes collisions.<Note note="needs research" /> Increases maximum container depth from 5 to 30. Adds blockIsVariable style methods.<Note note="needs research" />
+
+<PlayerVersion version="1.3.0" date="2019-11-04Z-0500" />
+Changes test for iOS app to exclude Safari.<Note note="needs research" /> New constructor for HSManagedObject?<Note note="needs research" /> Adds set origin block. Adds set center block. Adds origin x and y traits. Adds center x and y traits. More changes.<Note note="needs research" />
+
+#### 1.2.X
+
+<PlayerVersion version="1.2.13" date="2022-3-10Z-0500" />
+Preprocesses the project to convert custom rule instances to old-style custom rule references.<Note note="link to elaboration" />
+
+<PlayerVersion version="1.2.12" date="2020-7-30Z-0500" />
+Changes max lin width from 512 to 600, reverting to an identical state as 1.2.10.
+
+<PlayerVersion version="1.2.11" date="2020-7-28Z-0500" />
+Changes max line width from 600 to 512.
+
+<PlayerVersion version="1.2.10" date="2020-6-25Z-0500" />
+Changes how images are gotten.<Note note="needs research" /> Changes emoji regex.<Note note="needs research" />
+
+<PlayerVersion version="1.2.9" date="2020-5-13Z-0500" />
+Adds floor and ceiling blocks.
+
+<PlayerVersion version="1.2.8" date="2020-4-21Z-0500" />
+Changes entering fullscreen.<Note note="needs research" />
+
+<PlayerVersion version="1.2.7" date="2020-3-20Z-0500" />
+Moves checking for iOS to a function. <Note note="minification artifact?" /> Gets accelerometer data from the iOS app's main process.
+
+<PlayerVersion version="1.2.6" date="2020-3-4Z-0500" />
+Changes emoji regex.<Note note="needs research" /> Fixes references to original object by objects with no stage object.<Note note="needs research" /> Requests permission for accelerometer on iOS 13+.<Note note="needs research" />
+
+<PlayerVersion version="1.2.5" date="2019-12-18Z-0500" />
+Rounds parameters to 5 decimal points before use. Also some changes which may not change behavior.<Note note="needs research" />
+
+<PlayerVersion version="1.2.4" date="2019-11-26Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.2.3" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.2.2" date="2019-11-12Z-0500" />
+Increases maximum container depth. Also adds methods to determine if a block uses/is a variable, but does not use them.
+
+<PlayerVersion version="1.2.1" date="2019-08-15Z-0500" />
+Changes emoji loading and loads emojis before playing.<Note note="needs research" />
+
+<PlayerVersion version="1.2.0" date="2019-08-15Z-0500" />
+<Undocumented message="Coming soon!" />
+
+#### 1.1.X
+<PlayerVersion version="1.1.17" date="2022-03-10Z-0500" />
+Attempts to preprocess json from post-2.0.X editors.<Note note="needs research" />
+
+<PlayerVersion version="1.1.16" date="2020-06-29Z-0500" />
+Changes emoji source.
+
+<PlayerVersion version="1.1.15" date="2020-06-25Z-0500" />
+Bugfix with emojis, same as 1.0.13.<Note note="needs research" />
+
+<PlayerVersion version="1.1.14" date="2020-05-13Z-0500" />
+Adds `floor` and `ceiling` blocks, same as 1.0.12.
+
+<PlayerVersion version="1.1.13" date="2020-04-21Z-0500" />
+Improves entering fullscreen, same as 1.0.11.<Note note="needs research" />
+
+<PlayerVersion version="1.1.12" date="2020-03-20Z-0500" />
+Improves accelerometer on iOS, same as 1.0.10.
+
+<PlayerVersion version="1.1.11" date="2020-03-04Z-0500" />
+Bug fixes with emojis and original object traits, same as 1.0.9.<Note note="needs research" />
+
+<PlayerVersion version="1.1.10" date="2019-12-18Z-0500" />
+Rounds inputs to five decimal places when computing boolean expressions, same as 1.0.8.
+
+<PlayerVersion version="1.1.9" date="2019-11-26Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.1.8" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.1.7" date="2019-09-12Z-0500" />
+Increases maximum container depth from 5 to 30, same as 1.0.5.
+
+<PlayerVersion version="1.1.6" date="2019-08-15Z-0500" />
+Bug fixes with destroy?<Note note="needs research" />
+
+<PlayerVersion version="1.1.5" date="2019-08-09Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.1.4" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.1.3" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.1.2" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.1.1" date="2019-07-31Z-0500" />
+Minor bugfix with control blocks. Adds more colors.<Note note="needs research" />
+
+<PlayerVersion version="1.1.0" date="2019-07-18Z-0500" />
+Identical to 1.0.4.
+
+#### 1.0.X
+
+<PlayerVersion version="1.0.16" date="2022-03-10Z-0500" />
+Bugfix in preprocessing of newer projects.
+
+<PlayerVersion version="1.0.15" date="2022-03-08Z-0500" />
+Identical to 1.0.14.
+
+<PlayerVersion version="1.0.14" date="2022-03-08Z-0500" />
+Attempts to preprocess projects made with post-2.0.x editor and modifies emoji source.
+
+<PlayerVersion version="1.0.13" date="2020-06-25Z-0500" />
+Bugfix with emojis.<Note note="needs research" />
+
+<PlayerVersion version="1.0.12" date="2020-05-13Z-0500" />
+Adds `floor` and `ceiling` blocks.
+
+<PlayerVersion version="1.0.11" date="2020-04-21Z-0500" />
+Improves entering fullscreen.<Note note="needs research" />
+
+<PlayerVersion version="1.0.10" date="2020-03-20Z-0500" />
+Improves accelerometer on iOS.
+
+<PlayerVersion version="1.0.9" date="2020-03-04Z-0500" />
+Bug fixes with emojis and original object traits.<Note note="needs research" />
+
+<PlayerVersion version="1.0.8" date="2019-12-18Z-0500" />
+Rounds inputs to five decimal places when computing boolean expressions.
+
+<PlayerVersion version="1.0.7" date="2019-11-26Z-0500" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.0.6" />
+<Undocumented message="Coming soon!" />
+
+<PlayerVersion version="1.0.5" date="2019-09-12Z-0500" />
+Increases maximum container depth from 5 to 30
+
+<PlayerVersion version="1.0.4" date="2019-06-31Z-0500" />
+Adds the V3 shape objects.
+
+<PlayerVersion version="1.0.3" date="2019-06-31Z-0500" />
+Minor bug fix when parsing control blocks.
+
+<PlayerVersion version="1.0.2" date="2019-06-11Z-0500" />
+Adds the `When game_is_playing` event.
+
+<PlayerVersion version="1.0.1" date="2019-06-01Z-0500" />
+Minor bug fix with set text.
+
+<PlayerVersion version="1.0.0" date="2019-05-31Z-0500" />
+The oldest versioned webplayer. Used as default when the [`playerVersion`](/wiki/spec/common-project-properties#playerversion) property is missing from a project.
+<Undocumented message="What features are supported?" />
+
+### Pre-versioned webplayers
 <Undocumented message="Coming soon!" />
 
 
